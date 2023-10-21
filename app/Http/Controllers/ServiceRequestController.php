@@ -1,0 +1,173 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\ServiceRequest;
+
+class ServiceRequestController extends Controller
+{
+
+    public function requestForm(){
+        return view('pages.customer.submit-request');
+    }
+
+    public function requestLog(Request $request){
+        if ($request->filled('search')) {
+            $searchQuery = $request->input('search');
+        
+            $request_log = ServiceRequest::with(['service', 'technician'])
+                ->where('user_id', auth()->user()->id)
+                ->where(function ($query) use ($searchQuery) {
+                    $query->where('req_no', 'LIKE', "%$searchQuery%")
+                        ->orWhere('account_no', 'LIKE', "%$searchQuery%")
+                        ->orWhere('status', 'LIKE', "%$searchQuery%")
+                        ->orWhere('causes_of_request', 'LIKE', "%$searchQuery%")
+                        ->orWhere('findings', 'LIKE', "%$searchQuery%")
+                        ->orWhere('action_taking', 'LIKE', "%$searchQuery%")
+                        ->orWhere('date_accomp', 'LIKE', "%$searchQuery%");
+                })->get();
+            $pagination = false;
+            return view('pages.customer.request-log', [
+                'request_log' => $request_log,
+                'pagination' => $pagination
+            ]);
+        } else {
+            $pagination = true;
+            return view('pages.customer.request-log', [
+                'request_log' => ServiceRequest::with(['service', 'technician'])->where('user_id', auth()->user()->id)->paginate(5),
+                'pagination' => $pagination
+            ]);
+        }
+    }
+
+    public function requestProcess(Request $request){
+        if ($request->filled('search')) {
+            $searchQuery = $request->input('search');
+        
+            $request_log = ServiceRequest::with(['service', 'technician'])
+                ->where('user_id', auth()->user()->id)
+                ->where(function ($query) use ($searchQuery) {
+                    $query->where('req_no', 'LIKE', "%$searchQuery%")
+                        ->orWhere('account_no', 'LIKE', "%$searchQuery%")
+                        ->orWhere('status', 'LIKE', "%$searchQuery%")
+                        ->orWhere('causes_of_request', 'LIKE', "%$searchQuery%")
+                        ->orWhere('findings', 'LIKE', "%$searchQuery%")
+                        ->orWhere('action_taking', 'LIKE', "%$searchQuery%")
+                        ->orWhere('date_accomp', 'LIKE', "%$searchQuery%");
+                })->get();
+            $pagination = false;
+            return view('pages.customer.request-process', [
+                'request_log' => $request_log,
+                'pagination' => $pagination
+            ]);
+        } else {
+            $pagination = true;
+            return view('pages.customer.request-process', [
+                'request_log' => ServiceRequest::with(['service', 'technician'])->where('user_id', auth()->user()->id)->paginate(5),
+                'pagination' => $pagination
+            ]);
+        }
+    }
+
+    public function requestCompleted(Request $request){
+        if ($request->filled('search')) {
+            $searchQuery = $request->input('search');
+        
+            $request_log = ServiceRequest::with(['service', 'technician'])
+                ->where('user_id', auth()->user()->id)
+                ->where(function ($query) use ($searchQuery) {
+                    $query->where('req_no', 'LIKE', "%$searchQuery%")
+                        ->orWhere('account_no', 'LIKE', "%$searchQuery%")
+                        ->orWhere('status', 'LIKE', "%$searchQuery%")
+                        ->orWhere('causes_of_request', 'LIKE', "%$searchQuery%")
+                        ->orWhere('findings', 'LIKE', "%$searchQuery%")
+                        ->orWhere('action_taking', 'LIKE', "%$searchQuery%")
+                        ->orWhere('date_accomp', 'LIKE', "%$searchQuery%");
+                })->get();
+            $pagination = false;
+            return view('pages.customer.request-completed', [
+                'request_log' => $request_log,
+                'pagination' => $pagination
+            ]);
+        } else {
+            $pagination = true;
+            return view('pages.customer.request-completed', [
+                'request_log' => ServiceRequest::with(['service', 'technician'])->where('user_id', auth()->user()->id)->paginate(5),
+                'pagination' => $pagination
+            ]);
+        }
+    }
+
+    public function serviceStatus(){
+        return view('pages.customer.service-status',[
+            'service_stat' => ServiceRequest::with(['service','technician'])->where('user_id', auth()->user()->id)->orderBy('id','DESC')->first(), 
+        ]);
+    }
+
+    public function store(Request $request)
+    {
+        $service_req = ServiceRequest::get();
+        $is_exisit = $service_req->where('user_id', auth()->user()->id)->where('status', 'Pending')->count();
+
+        if($is_exisit != 0){
+            return redirect()->back()->with('warning', 'We have a record of your service request already. Please get in touch with our team to have your pending request approved, and we will assign a technician to start working on it!');
+        }
+
+        $request->validate([
+            'account_no' => 'required',
+            'service_id' => 'required',
+        ]);
+
+        $service_req = ServiceRequest::create([
+            'user_id' => auth()->user()->id,
+            'account_no' => $request->input('account_no'),
+            'service_id' => $request->input('service_id'),
+        ]);
+
+        return redirect()->back()->with('success', 'Service requested successfully');
+    }
+
+    public function requestCancel(Request $request){
+        $up_service_status = ServiceRequest::findOrFail($request->id);
+        $up_service_status->update([
+            'status' => 'Cancelled',
+        ]);
+
+        return redirect()->back()->with('success', 'Service request cancelled!');
+    }
+
+    public function requestCancelList(Request $request){
+        if ($request->filled('search')) {
+            $searchQuery = $request->input('search');
+        
+            $request_log = ServiceRequest::with(['service', 'technician'])
+                ->where('user_id', auth()->user()->id)
+                ->where(function ($query) use ($searchQuery) {
+                    $query->where('req_no', 'LIKE', "%$searchQuery%")
+                        ->orWhere('account_no', 'LIKE', "%$searchQuery%")
+                        ->orWhere('status', 'LIKE', "%$searchQuery%")
+                        ->orWhere('causes_of_request', 'LIKE', "%$searchQuery%")
+                        ->orWhere('findings', 'LIKE', "%$searchQuery%")
+                        ->orWhere('action_taking', 'LIKE', "%$searchQuery%")
+                        ->orWhere('date_accomp', 'LIKE', "%$searchQuery%");
+                })->get();
+            $pagination = false;
+            return view('pages.customer.request-cancelled', [
+                'request_log' => $request_log,
+                'pagination' => $pagination
+            ]);
+        } else {
+            $pagination = true;
+            return view('pages.customer.request-cancelled', [
+                'request_log' => ServiceRequest::with(['service', 'technician'])->where('user_id', auth()->user()->id)->paginate(5),
+                'pagination' => $pagination
+            ]);
+        }
+    }
+
+    public function printRequestStatus(){
+        return view('pages.customer.print-service-status');
+    }
+
+}
