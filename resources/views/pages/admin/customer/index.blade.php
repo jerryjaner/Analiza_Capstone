@@ -9,6 +9,8 @@ Customers
 @endsection
 
 @section('content')
+
+
 <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">
     <h2 class="intro-y text-lg font-medium mr-5 text-center">Customers Management</h2>
@@ -56,6 +58,9 @@ Customers
     </button>
 </div>
 @endif
+
+
+
 <div class="col-span-12 lg:col-span-6">
     <div class="intro-y overflow-auto xxxl:overflow-visible">
         <table class="table table-report sm:mt-2">
@@ -114,7 +119,7 @@ Customers
                     </td>
                     <td class="w-40">
                         <div class="flex">
-                            @if ($data->is_Approved == 0)
+                            @if ($data->verification == "0")
                                 <p class="text-xs" style="color:red;">Not Verified</p>
                             @else
                                 <p class="text-xs" style="color:green;">Verified</p>
@@ -123,8 +128,10 @@ Customers
                         </div>
                     </td>
                     <td class="w-40">
-                        {{-- <div class="flex">
-                            <a href="javascript:;"
+                        <div class="flex">
+
+                            <!-- Modal toggle -->
+                            {{-- <a href="javascript:;"
                                 data-id="{{$data->user->id}}"
                                 data-position="{{$data->position}}"
                                 data-name="{{$data->user->name}}"
@@ -137,37 +144,45 @@ Customers
                                 data-target="#view"
                                 class="view-dialog rounded-md p-1 w-35 text-white bg-theme-1 hover:bg-blue-400 xl:mr-3 flex">
                                 <i data-feather="eye"></i>
-                            </a>
+                            </a> --}}
 
                             <a href="javascript:;"
-                                data-id="{{$data->user_id}}"
-                                data-position="{{$data->position}}"
-                                data-name="{{$data->user->name}}"
-                                data-address="{{$data->user->address}}"
-                                data-email="{{$data->user->email}}"
-                                data-cp="{{$data->user->cp}}"
-                                data-gender="{{$data->gender}}"
-                                data-dob="{{$data->dob}}"
+                                data-id="{{$data->id}}"
+                                {{-- data-position="{{$data->position}}" --}}
+                                data-name="{{$data->name}}"
+                                data-account_no="{{$data->account_no}}"
+                                data-is_Approved="{{$data->is_Approved}}"
+                                data-email="{{$data->email}}"
+                                data-cp="{{$data->cp}}"
+                                data-house_block_lot="{{$data->house_block_lot}}"
+                                data-street="{{$data->street}}"
+                                data-verification="{{$data->verification}}"
+                                data-subdivision="{{$data->subdivision}}"
+                                data-barangay="{{$data->barangay}}"
+                                data-municipality="{{$data->municipality}}"
+                                data-province="{{$data->province}}"
+                                data-landmark="{{$data->landmark}}"
                                 data-toggle="modal"
-                                data-target="#edit"
+                                data-target="#editcustomer"
                                 class="view-dialog rounded-md p-1 w-35 text-white bg-theme-9 hover:bg-green-400 xl:mr-3 flex">
                                 <i data-feather="edit"></i>
                             </a>
 
-                            <a href="javascript:;"
+                            {{-- <a href="javascript:;"
                                 data-id="{{$data->user_id}}"
                                 data-toggle="modal"
                                 data-target="#delete"
                                 class="delete-dialog rounded-md p-1 w-35 text-white bg-theme-6 hover:bg-red-400 xl:mr-3 flex">
                                 <i data-feather="delete"></i>
-                            </a>
-                        </div> --}}
+                            </a> --}}
+                        </div>
                     </td>
                 </tr>
                 @empty
                 <tr>
                     <td colspan="7" class="text-center text-red-500">No Data Found!</td>
                 </tr>
+
                 @endforelse
             </tbody>
         </table>
@@ -188,29 +203,49 @@ Customers
         })
     );
 
-    // $(document).on("click", ".view-dialog", function () {
-    //     var id = $(this).data('id');
-    //     var position = $(this).data('position');
-    //     var name = $(this).data('name');
-    //     var lname = $(this).data('lname');
-    //     var gender = $(this).data('gender');
-    //     var address = $(this).data('address');
-    //     var dob = $(this).data('dob');
-    //     var cp = $(this).data('cp');
-    //     var email = $(this).data('email');
-    //     var image = $(this).data('image');
-    //     $('.modal__content #id').val(id);
-    //     $('.modal__content #position').val(position);
-    //     $('.modal__content #name').val(name);
-    //     $('.modal__content #lname').val(lname);
-    //     $('.modal__content #gender').val(gender);
-    //     $('.modal__content #address').val(address);
-    //     $('.modal__content #dob').val(dob);
-    //     $('.modal__content #email').val(email);
-    //     $('.modal__content #cp').val(cp);
-    //     $('#linkImage').attr('href',image);
-    //     $('#image').attr('src',image);
-    // });
+    $(document).on("click", ".view-dialog", function () {
+        var id = $(this).data('id');
+
+        var name = $(this).data('name');
+         var account_no = $(this).data('account_no');
+        // var address = $(this).data('address');
+        // var dob = $(this).data('dob');
+        var cp = $(this).data('cp');
+        var email = $(this).data('email');
+        var street = $(this).data('street');
+        var verification = $(this).data('verification');
+        var is_Approved = $(this).data('is_Approved');
+        var house_block_lot = $(this).data('house_block_lot');
+        var subdivision = $(this).data('subdivision');
+        var barangay = $(this).data('barangay');
+        var municipality = $(this).data('municipality');
+        var province = $(this).data('province');
+        var landmark = $(this).data('landmark');
+
+
+
+
+        $('.modal__content #id').val(id);
+        $('.modal__content #name').val(name);
+        //$('.modal__content #gender').val(gender);
+
+        // $('.modal__content #address').val(address);
+       // $('.modal__content #dob').val(dob);
+        $('.modal__content #account_no').val(account_no);
+        $('.modal__content #email').val(email);
+        $('.modal__content #cp').val(cp);
+        $('.modal__content #street').val(street);
+        $('.modal__content #verification').val(verification);
+        $('.modal__content #is_Approved').val(is_Approved);
+        $('.modal__content #house_block_lot').val(house_block_lot);
+        $('.modal__content #subdivision').val(subdivision);
+        $('.modal__content #barangay').val(barangay);
+        $('.modal__content #municipality').val(municipality);
+        $('.modal__content #province').val(province);
+        $('.modal__content #landmark').val(landmark);
+
+
+    });
 
     // $(document).on("click", ".delete-dialog", function () {
     //     var id = $(this).data('id');

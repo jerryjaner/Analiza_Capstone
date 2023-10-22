@@ -52,7 +52,7 @@ class PageController extends Controller
             ]);
         }else{
 
-            if(Auth::check() && Auth::User()-> is_Approved == true){
+            if(Auth::check() && Auth::User()-> verification == '1'){
 
                 return view('pages.customer.index');
             }

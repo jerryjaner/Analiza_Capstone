@@ -73,7 +73,8 @@ class TechnicianController extends Controller
             'password' => Hash::make($validated['password']),
             'cp' => $validated['cp'],
             'role' => '2',
-            'is_Approved' => true,
+           // 'is_Approved' => '1',
+            'verification' => '1',
         ]);
         $user->personal_info()->create([
             'user_id' => $user->id,

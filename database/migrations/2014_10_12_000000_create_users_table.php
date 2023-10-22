@@ -36,7 +36,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('role')->default('0');
-            $table->boolean('is_Approved')->nullable();
+            $table->integer('is_Approved')->nullable();
+            $table->integer('verification')->default('0');
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();

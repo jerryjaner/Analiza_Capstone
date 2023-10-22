@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class PersonalInfo extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
         'user_id',
         'gender',

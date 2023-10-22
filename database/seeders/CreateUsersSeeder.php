@@ -22,6 +22,7 @@ class CreateUsersSeeder extends Seeder
                'cp'=>'12345678919',
                'email'=>'admin@example.com',
                 'role'=>'1',
+                'verification' => '1',
                'password'=> bcrypt('123456'),
             ],
             [
@@ -31,6 +32,7 @@ class CreateUsersSeeder extends Seeder
                'cp'=>'12345678919',
                'email'=>'customer@example.com',
                 'role'=>'0',
+                'verification' => '1',
                'password'=> bcrypt('123456'),
             ],
             [
@@ -39,6 +41,7 @@ class CreateUsersSeeder extends Seeder
                 'cp'=>'12345678919',
                 'email'=>'staff@example.com',
                  'role'=>'3',
+                 'verification' => '1',
                 'password'=> bcrypt('123456'),
              ],
              [
@@ -47,10 +50,11 @@ class CreateUsersSeeder extends Seeder
                 'cp'=>'12345678919',
                 'email'=>'technician@example.com',
                  'role'=>'2',
+                 'verification' => '1',
                 'password'=> bcrypt('123456'),
              ],
         ];
-  
+
         foreach ($user as $key => $value) {
             User::create($value);
         }

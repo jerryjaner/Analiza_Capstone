@@ -1,5 +1,5 @@
 @php
-     $customer_not_approved = \App\Models\user::where('role','0')->where('is_Approved', '0')->count();
+     $customer_not_approved = \App\Models\user::where('role','0')->where('verification', '0')->count();
 @endphp
 
 <nav class="side-nav">

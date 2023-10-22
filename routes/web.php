@@ -14,6 +14,7 @@ use App\Http\Controllers\{
     AssignedRequestController,
     RegisterController,
     CustomerController,
+    testController,
 
 };
 
@@ -38,6 +39,8 @@ Route::middleware([
     ->prefix('customers')
     ->group(function(){
         Route::get('/','index')->name('index');
+        Route::post('/store','store')->name('store');
+        Route::put('/update','update')->name('update');
 
     });
 

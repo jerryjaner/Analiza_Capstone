@@ -26,6 +26,7 @@ class RegisterController extends Controller
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ]);
         $user = User::create([
+
             'account_no' => $validated['account_no'],
             'name' => $validated['name'],
             'house_block_lot' => $validated['house_block_lot'],
@@ -39,7 +40,8 @@ class RegisterController extends Controller
             'password' => Hash::make($validated['password']),
             'cp' => $validated['cp'],
             'role' => '0',
-            'is_Approved' => false,
+           // 'is_Approved' => '0',
+            'verification' => '0',
         ]);
 
         return Redirect()->back()->with('message', 'Account is succesfully registerd');
