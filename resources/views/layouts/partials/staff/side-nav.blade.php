@@ -1,3 +1,7 @@
+@php
+     $customer_not_approved = \App\Models\user::where('role','0')->where('verification', '0')->count();
+@endphp
+
 <nav class="side-nav">
     <a href="" class="intro-x flex items-center pl-5 pt-4">
         <img class="w-12" src="{{asset('img/logo.png')}}" style="border-radius:30px;">
@@ -9,6 +13,15 @@
             <a href="{{url('home')}}" class="side-menu {{(!request()->routeIs('home'))?'bg-theme-1':'bg-blue-500'}}">
                 <div class="side-menu__icon"> <i data-feather="user"></i> </div>
                 <div class="side-menu__title"> Profile </div>
+            </a>
+        </li>
+        <li>
+            <a href="{{route('customers.add_customer')}}" class="side-menu {{(!request()->routeIs('customers.add_customer'))?'bg-theme-1':'bg-blue-500'}}">
+                <div class="side-menu__icon"> <i data-feather="users"></i> </div>
+                <div class="side-menu__title"> Customers </div>
+                @if($customer_not_approved > 0)
+                    <span class="badge right" style="background-color:yellow; padding:3px 10px; border-radius:10%; margin-right:10px;    color:black;" title="Not Approved Customer">{{$customer_not_approved}}</span>
+                @endif
             </a>
         </li>
         <li>

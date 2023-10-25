@@ -9,16 +9,16 @@
             <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
                 <div class="col-span-12 sm:col-span-12 text-center" style="display:none;" id="add_err"><div class="rounded-md flex items-center px-5 py-4 mb-2 bg-theme-12 text-white"> <i data-feather="alert-circle" class="w-6 h-6 mr-2"></i> All fields must be filled out! <i data-feather="x" onclick="return closeAddAlert();" class="w-4 h-4 ml-auto"></i> </div></div>
 
-                <div class="col-span-12 sm:col-span-4">
+                <div class="col-span-12 sm:col-span-6">
                     <label>Account Number</label>
                     <input type="text" required=""  name="account_no" class="input w-full border mt-2 flex-1 @error('account_no') border-theme-6 @enderror" value="{{old('account_no')}}" placeholder="Input Account Number">
                 </div>
-                <div class="col-span-12 sm:col-span-4">
+                <div class="col-span-12 sm:col-span-6">
                     <label>Full Name</label>
                     <input type="text" required="" onkeydown="return /[a-z, ]/i.test(event.key)" name="name" class="input w-full border mt-2 flex-1 @error('name') border-theme-6 @enderror" value="{{old('name')}}" placeholder="Input Full Name">
                 </div>
 
-                <div class="col-span-12 sm:col-span-4"> <label>Sex</label>
+                {{-- <div class="col-span-12 sm:col-span-4"> <label>Sex</label>
                     <select  required="" name="gender" class="input w-full border mt-2 flex-1 @error('gender') border-theme-6 @enderror">
                         @if(old('gender'))
                         <option>{{old('gender')}}</option>
@@ -27,7 +27,7 @@
                         <option>Male</option>
                         <option>Female</option>
                     </select>
-                </div>
+                </div> --}}
 
                 <div class="col-span-12 sm:col-span-4">
                     <label>House / Block / Lot</label>
@@ -60,10 +60,10 @@
 
 
 
-                <div class="col-span-12 sm:col-span-12">
+                {{-- <div class="col-span-12 sm:col-span-12">
                     <label>Date of Birth</label>
                     <input type="date" required="" name="dob" class="input w-full border mt-2 flex-1 @error('dob') border-theme-6 @enderror" value="{{old('dob')}}" placeholder="Input Date of Birth">
-                </div>
+                </div> --}}
                 <div class="col-span-12 sm:col-span-6">
                     <label>Contact No.</label>
                     <input type="text" required="" name="cp" minlength="11" maxlength="11" class="input w-full border mt-2 flex-1 @error('cp') border-theme-6 @enderror" value="{{old('cp')}}" placeholder="Input Contact Number">

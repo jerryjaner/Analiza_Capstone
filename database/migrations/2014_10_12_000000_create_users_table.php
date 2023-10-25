@@ -38,6 +38,7 @@ return new class extends Migration
             $table->integer('role')->default('0');
             $table->integer('is_Approved')->nullable();
             $table->integer('verification')->default('0');
+            $table->integer('is_Online')->nullable();
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();

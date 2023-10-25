@@ -9,7 +9,7 @@ use Carbon\Carbon;
 
 class ProfileController extends Controller
 {
-    
+
     public function updateProfile(Request $request){
 
         $validated = $request->validate([
@@ -35,6 +35,7 @@ class ProfileController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->cp = $request->cp;
+        $user->is_Online = $request->is_Online;
         $user->address = $request->address;
         if(isset($fileToStore)){
             $user->image_prof = $fileToStore;

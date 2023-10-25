@@ -41,7 +41,27 @@ Profile
         <h2 class="text-lg font-medium truncate mr-5">
             Profile Information
         </h2>
+
     </div>
+</div>
+
+<div class="col-span-12 mt-8">
+    <div class="intro-y flex items-center h-10">
+        <h2 class="text-lg font-medium truncate mr-5">
+           Status
+
+        </h2>
+        @if(auth()->user()->is_Online == '1')
+
+             <h1 class="text-lg font-medium truncate mr-5" style="color:green">Online</p>
+
+        @else
+
+             <h1 class="text-lg font-medium truncate mr-5" style="color:red">Offline</p>
+
+        @endif
+
+
 </div>
 @if (session()->has('success'))
 <div id="alert-border-3" class="flex items-center p-4 mt-4 text-green-800 border-t-4 border-green-300 bg-green-50 dark:text-green-400 dark:bg-gray-800 dark:border-green-800" role="alert">
@@ -87,6 +107,8 @@ Profile
                         </div>
                     </div>
 
+
+
                     <div class="grid md:grid-cols-3 md:gap-6">
                         <div class="relative z-0 w-full mb-6 group">
                             <input type="text" name="gender" id="cp" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required  value="{{$person_info->gender ?? ''}}" />
@@ -101,7 +123,20 @@ Profile
                             <label for="position" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Position</label>
                         </div>
                     </div>
-                    
+
+                    <div class="grid md:grid-cols-2 md:gap-6 mb-5">
+                        <select  required="" name="is_Online" id="is_Online"class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required  value="{{auth()->user()->is_Online ?? ''}}">
+                            @if((auth()->user()->is_Online == '1'))
+                              <option>Online</option>
+                            @else
+                                <option>Offline</option>
+                            @endif
+                            <option value="">--Select--</option>
+                            <option value="1">Online</option>
+                            <option value="0">Offline</option>
+                        </select>
+                    </div>
+
                     <button type="submit" class="text-white bg-theme-1 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update Info</button>
                 </div>
 

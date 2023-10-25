@@ -57,7 +57,7 @@ class WorkOrderController extends Controller
         }
         return view('pages.staff.request-list', [
             'work_order' => $work_order,
-            'user_technician' => User::where('role', '2')->get(),
+            'user_technician' => User::where('role', '2') ->where('is_Online', '0')->get(),
         ]);
     }
 
@@ -90,7 +90,7 @@ class WorkOrderController extends Controller
         $assignedAssets = AssignedTransactionAsset::where('service_request_id', $id)->get();
         $totalPriceAmount = $assignedAssets->sum('total_price_amount');
         $totalCostLbc = $assignedAssets->sum('total_cost_lbc');
-    
+
         return view('pages.staff.assigned-asset', [
             'assets' => Asset::get(),
             'assigned_asset' => $assignedAssets,
@@ -100,19 +100,19 @@ class WorkOrderController extends Controller
             'totalCostLbc' => $totalCostLbc,
         ]);
     }
-    
+
     public function createAssetList(Request $request, $id){
         $request->validate([
             'asset_id' => 'required',
             'qty' => 'nullable|numeric',
         ]);
-    
+
         $ass_already_exist = AssignedTransactionAsset::where('service_request_id', $id)->where('asset_id', $request->asset_id)->first();
-    
+
         if ($ass_already_exist) {
             return redirect()->back()->with('warning', 'Data Already Exists!');
         }
-    
+
         $get_asset = Asset::findOrFail($request->asset_id);
         $unit_price = $get_asset->unit_price;
         $unit_cost_lbc = $get_asset->unit_cost_lbc;
@@ -136,7 +136,7 @@ class WorkOrderController extends Controller
             'total_price_amount' => $total_price_amount == '0' ? null : $total_price_amount,
             'total_cost_lbc' => $total_cost_lbc == '0' ? null : $total_cost_lbc,
         ]);
-    
+
         return redirect()->back()->with('success', 'Data Successfully Added!');
     }
 
@@ -152,7 +152,7 @@ class WorkOrderController extends Controller
         $assignedAssets = AssignedTransactionAsset::where('service_request_id', $id)->get();
         $totalPriceAmount = $assignedAssets->sum('total_price_amount');
         $totalCostLbc = $assignedAssets->sum('total_cost_lbc');
-    
+
         return view('pages.technician.assigned-asset', [
             'assets' => Asset::get(),
             'assigned_asset' => $assignedAssets,

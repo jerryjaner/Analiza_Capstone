@@ -1,4 +1,4 @@
-@extends('../../layouts.admin')
+@extends('layouts.staff')
 
 @section('title')
 Customers List
@@ -131,24 +131,8 @@ Customers
                         <div class="flex">
 
                             <!-- Modal toggle -->
-                            {{-- <a href="javascript:;"
-                                data-id="{{$data->user->id}}"
-                                data-position="{{$data->position}}"
-                                data-name="{{$data->user->name}}"
-                                data-address="{{$data->user->address}}"
-                                data-email="{{$data->user->email}}"
-                                data-cp="{{$data->user->cp}}"
-                                data-gender="{{$data->gender}}"
-                                data-dob="{{$data->dob}}"
-                                data-toggle="modal"
-                                data-target="#view"
-                                class="view-dialog rounded-md p-1 w-35 text-white bg-theme-1 hover:bg-blue-400 xl:mr-3 flex">
-                                <i data-feather="eye"></i>
-                            </a> --}}
-
                             <a href="javascript:;"
                                 data-id="{{$data->id}}"
-                                {{-- data-position="{{$data->position}}" --}}
                                 data-name="{{$data->name}}"
                                 data-account_no="{{$data->account_no}}"
                                 data-is_Approved="{{$data->is_Approved}}"
@@ -168,13 +152,6 @@ Customers
                                 <i data-feather="edit"></i>
                             </a>
 
-                            {{-- <a href="javascript:;"
-                                data-id="{{$data->user_id}}"
-                                data-toggle="modal"
-                                data-target="#delete"
-                                class="delete-dialog rounded-md p-1 w-35 text-white bg-theme-6 hover:bg-red-400 xl:mr-3 flex">
-                                <i data-feather="delete"></i>
-                            </a> --}}
                         </div>
                     </td>
                 </tr>
@@ -192,7 +169,8 @@ Customers
 @if($pagination <> false)
 {!! $customers->links() !!}
 @endif
-<x-admin-customer-modal />
+
+<x-staff-modal />
 @endsection
 @push('custom-scripts')
 <script>

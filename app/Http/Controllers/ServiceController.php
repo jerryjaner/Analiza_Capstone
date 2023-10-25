@@ -7,10 +7,10 @@ use App\Models\{Service,ServiceRequest};
 
 class ServiceController extends Controller
 {
-  
+
     public function index(Request $request)
     {
-        if ($request->filled('search')) 
+        if ($request->filled('search'))
         {
             $pagination = false;
             $searchQuery = $request->input('search');
@@ -64,7 +64,7 @@ class ServiceController extends Controller
 
         if ($request->filled('search')) {
             $searchQuery = $request->input('search');
-        
+
             $request_log = ServiceRequest::with(['service', 'technician'])->where('service_id',$id)
                 ->where(function ($query) use ($searchQuery) {
                     $query->where('req_no', 'LIKE', "%$searchQuery%")
@@ -96,5 +96,5 @@ class ServiceController extends Controller
         //
     }
 
-    
+
 }

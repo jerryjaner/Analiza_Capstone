@@ -10,10 +10,10 @@ Service
 
 @section('content')
 <div class="grid grid-cols-12 gap-6 mt-5">
-  
+
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">
         <h2 class="intro-y text-lg font-medium mr-5 text-center">Service Management</h2>
-       
+
         <div class="intro-x text-center xl:text-left">
             <a href="javascript:;" data-toggle="modal" data-target="#add" class="rounded-full p-2 w-full text-white text-center hover:bg-blue-400 bg-theme-1 xl:mr-3 flex"><i data-feather="plus"></i><i data-feather="tool"></i></a>
             <!-- Modal show -->
@@ -24,37 +24,71 @@ Service
                             Create Service
                         </h2>
                     </div>
-                  
+
                     <form action="{{route('service.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
+
+
                         <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
                             <div class="col-span-12 sm:col-span-12">
                                 <label for="exampleFormControlFile1">Service Name :</label>
-                                <input type="text" name="name" class="input w-full" id="exampleFormControlFile1" required="">
+                                <select  required="" name="name" class="input w-full border mt-2 flex-1 @error('name') border-theme-6 @enderror">
+                                    {{-- @if(old('name'))
+                                    <option>{{old('name')}}</option>
+                                    @endif --}}
+                                    <option value="" >--Select--</option>
+                                    <option  value="Installation">Installation</option>
+                                    <option  value="Re-Open / Reconnection">Re-Open / Reconnection</option>
+                                    <option value="Disconnection">Disconnecion</option>
+                                    <option disabled style="color:black;">Maintenance Order</option>
+                                    <optgroup label="Type of Maintenance Order">
+                                        <option value="Transfer of Water Services Connection">Transfer of Water Services Connection</option>
+                                        <option value="Relocation of Water Meter">Relocation of Water Meter</option>
+                                        <option value="Replacement of Faucet, Stop Cock, Elbow And Other">Replacement of Faucet, Stop Cock, Elbow And Other</option>
+                                        <option value="Repair/Replacement of Broken Services Connection">Repair/Replacement Of Broken Services Connection</option>
+                                        <option value="Repair of Leakages">Repair of Leakages</option>
+                                        <option value="Replacement of Lost/Damaged Water Meter">Replacement of Lost/Damaged Water Meter</option>
+                                        <option value="Transfer of Tapping">Transfer of Tapping</option>
+                                        <option value="No Water / Low Pressure">No Water / Low Pressure</option>
+                                        <option value="Replacement of Stuck-up Water Meter">Replacement of Stuck-up Water Meter</option>
+                                        <option value="Water Meter Leak">Water Meter Leak</option>
+                                        <option value="Bad Odor / Bad Taste / Sandy / Dirty Water">Bad Odor / Bad Taste / Sandy / Dirty Water</option>
+                                        <option value="High Consumption">High Consumption</option>
+                                    </optgroup>
+                                </select>
                             </div>
+
+
+
+                            {{-- <div class="col-span-12 sm:col-span-12">
+                                <label for="exampleFormControlFile1">Service Name :</label>
+                                <input type="text" name="name" class="input w-full" id="exampleFormControlFile1" required="">
+                            </div> --}}
 
                             <div class="col-span-12 sm:col-span-12">
                                 <label for="exampleFormControlFile1">Service Description :</label>
                                 <textarea name="description" id="" cols="30" class="input w-full" rows="4" required=""></textarea>
                             </div>
+
+
                         </div>
                         <div class="px-5 py-3 text-right border-t border-gray-200 dark:border-dark-5">
                             <button type="button" data-dismiss="modal" class="button w-20 border text-gray-700 dark:border-dark-5 dark:text-gray-300 mr-1">Cancel</button>
                             <button type="submit" class="button w-20 bg-theme-1 text-white">Save</button>
                         </div>
                     </form>
-                    
+
                 </div>
             </div>
             <!-- Modal end -->
         </div>
         <div class="hidden md:block mx-auto text-gray-600"></div>
-        
+
         <form method="GET">
         <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
             <div class="w-full xl:w-56 relative text-gray-700 dark:text-gray-300">
                 <input type="text" name="search" value="{{ request()->get('search') }}" class="input w-full xl:w-56 box pr-10 placeholder-theme-13" style="padding:10px; border-radius: 20px;" placeholder="Search...">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> 
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             </div>
         </div>
         </form>
@@ -105,7 +139,7 @@ Service
                                 class="view-dialog rounded-md p-1 w-35 text-white bg-theme-9 hover:bg-green-400 xl:mr-3 flex"><i data-feather="edit"></i></a>
                             </div>
                         </td>
-                        
+
                         <div class="modal" id="edit{{$data->id}}">
                             <div class="modal__content">
                                 <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200 dark:border-dark-5">
@@ -113,15 +147,44 @@ Service
                                         Create Service
                                     </h2>
                                 </div>
-                            
+
                                 <form action="{{route('service.update',$data->id)}}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
+
+
                                     <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
                                         <div class="col-span-12 sm:col-span-12">
                                             <label for="exampleFormControlFile1">Service Name :</label>
-                                            <input type="text" name="name" class="input w-full" id="exampleFormControlFile1" value="{{$data->name}}" required="">
+                                            <select  required="" name="name" class="input w-full border mt-2 flex-1 @error('name') border-theme-6 @enderror" required>
+                                                <option value="{{$data->name}}"> {{$data->name}}</option>
+                                                <option  value="Installation">Installation</option>
+                                                <option  value="Re-Open / Reconnection">Re-Open / Reconnection</option>
+                                                <option value="Disconnection">Disconnecion</option>
+                                                <option disabled style="color:black;">Maintenance Order</option>
+                                                <optgroup label="Type of Maintenance Order">
+                                                    <option value="Transfer of Water Services Connection">Transfer of Water Services Connection</option>
+                                                    <option value="Relocation of Water Meter">Relocation of Water Meter</option>
+                                                    <option value="Replacement of Faucet, Stop Cock, Elbow And Other">Replacement of Faucet, Stop Cock, Elbow And Other</option>
+                                                    <option value="Repair/Replacement of Broken Services Connection">Repair/Replacement Of Broken Services Connection</option>
+                                                    <option value="Repair of Leakages">Repair of Leakages</option>
+                                                    <option value="Replacement of Lost/Damaged Water Meter">Replacement of Lost/Damaged Water Meter</option>
+                                                    <option value="Transfer of Tapping">Transfer of Tapping</option>
+                                                    <option value="No Water / Low Pressure">No Water / Low Pressure</option>
+                                                    <option value="Replacement of Stuck-up Water Meter">Replacement of Stuck-up Water Meter</option>
+                                                    <option value="Water Meter Leak">Water Meter Leak</option>
+                                                    <option value="Bad Odor / Bad Taste / Sandy / Dirty Water">Bad Odor / Bad Taste / Sandy / Dirty Water</option>
+                                                    <option value="High Consumption">High Consumption</option>
+                                                </optgroup>
+                                            </select>
                                         </div>
+
+
+
+                                        {{-- <div class="col-span-12 sm:col-span-12">
+                                            <label for="exampleFormControlFile1">Service Name :</label>
+                                            <input type="text" name="name" class="input w-full" id="exampleFormControlFile1" value="{{$data->name}}" required="">
+                                        </div> --}}
 
                                         <div class="col-span-12 sm:col-span-12">
                                             <label for="exampleFormControlFile1">Service Description :</label>
@@ -133,7 +196,7 @@ Service
                                         <button type="submit" class="button w-20 bg-theme-1 text-white">Update</button>
                                     </div>
                                 </form>
-                                
+
                             </div>
                         </div>
 

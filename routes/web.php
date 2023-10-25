@@ -14,7 +14,7 @@ use App\Http\Controllers\{
     AssignedRequestController,
     RegisterController,
     CustomerController,
-    testController,
+
 
 };
 
@@ -42,6 +42,13 @@ Route::middleware([
         Route::post('/store','store')->name('store');
         Route::put('/update','update')->name('update');
 
+
+        //This is for adding customer in STAFF ACCOUNT
+        Route::get('/add','add_customer')->name('add_customer');
+        Route::post('/customer-store','customer_store')->name('customer_store');
+        Route::put('/customer_update','customer_update')->name('customer_update');
+
+
     });
 
     Route::controller(StaffController::class)
@@ -52,6 +59,9 @@ Route::middleware([
         Route::post('/store','store')->name('store');
         Route::put('/update','update')->name('update');
         Route::delete('/delete','destroy')->name('delete');
+
+
+
     });
 
 

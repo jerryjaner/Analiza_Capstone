@@ -30,6 +30,8 @@ class StaffController extends Controller
                 })
                 ->get();
 
+
+
             $staff->map(function ($item) {
                 $user = $item->user;
                 $item->name = $user->name;
@@ -38,7 +40,7 @@ class StaffController extends Controller
                 $item->email = $user->email;
             });
 
-        //   dd($staff);
+
 
         }
         else
@@ -130,4 +132,7 @@ class StaffController extends Controller
         }
         return redirect()->back()->with('err', 'Staff Successfully Deleted!');
     }
+
+
+
 }
