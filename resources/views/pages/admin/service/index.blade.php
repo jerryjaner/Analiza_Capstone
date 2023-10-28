@@ -30,12 +30,10 @@ Service
 
 
                         <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
-                            <div class="col-span-12 sm:col-span-12">
+                            {{-- <div class="col-span-12 sm:col-span-12">
                                 <label for="exampleFormControlFile1">Service Name :</label>
                                 <select  required="" name="name" class="input w-full border mt-2 flex-1 @error('name') border-theme-6 @enderror">
-                                    {{-- @if(old('name'))
-                                    <option>{{old('name')}}</option>
-                                    @endif --}}
+
                                     <option value="" >--Select--</option>
                                     <option  value="Installation">Installation</option>
                                     <option  value="Re-Open / Reconnection">Re-Open / Reconnection</option>
@@ -56,14 +54,14 @@ Service
                                         <option value="High Consumption">High Consumption</option>
                                     </optgroup>
                                 </select>
-                            </div>
+                            </div> --}}
 
 
 
-                            {{-- <div class="col-span-12 sm:col-span-12">
+                            <div class="col-span-12 sm:col-span-12">
                                 <label for="exampleFormControlFile1">Service Name :</label>
                                 <input type="text" name="name" class="input w-full" id="exampleFormControlFile1" required="">
-                            </div> --}}
+                            </div>
 
                             <div class="col-span-12 sm:col-span-12">
                                 <label for="exampleFormControlFile1">Service Description :</label>
@@ -208,6 +206,11 @@ Service
                 @endforelse
             </tbody>
         </table>
+        <div class="mt-3">
+            @if($pagination <> false)
+            {!! $service->links() !!}
+            @endif
+        </div>
     </div>
 </div>
 @endsection
@@ -222,4 +225,5 @@ Service
         })
     );
 </script>
+
 @endpush

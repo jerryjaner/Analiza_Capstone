@@ -76,7 +76,7 @@ Request Submission
 </div>
 @endif
 <div class="intro-y w-full max-w-xxl mx-auto">
-    <div class="border-b border-gray-200 dark:border-dark-5 text-center sm:text-left">  
+    <div class="border-b border-gray-200 dark:border-dark-5 text-center sm:text-left">
         <div class="flex flex-col lg:flex-row px-5 sm:px-20 pt-10 pb-10 sm:pb-20">
             <div class="">
                 <div class="text-theme-1 dark:text-theme-10 font-semibold text-3xl">Request Form</div>
@@ -87,14 +87,15 @@ Request Submission
                 <div class="mt-1">{{auth()->user()->address}}, Bulan, Sorsogon</div>
                 <div class="mt-1">{{auth()->user()->email}}</div>
                 <div class="mt-1">{{auth()->user()->cp}}</div>
+                <div class="mt-1">{{auth()->user()->landmark}}</div>
             </div>
         </div>
     </div>
     <form action="{{route('request.store')}}" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         @csrf
         <div class="mb-4">
-            <div class="col-span-12 sm:col-span-4"> 
-                <label>Account No.</label> 
+            <div class="col-span-12 sm:col-span-4">
+                <label>Account No.</label>
                 <input type="text" name="account_no" pattern="[0-9]{3}-{1}[0-9]{2}-[0-9]{5}" minlength="12" maxlength="12" class="input w-full border border-gray-300 mt-2 flex-1" value="{{auth()->user()->account_no}}">
             </div>
         </div>

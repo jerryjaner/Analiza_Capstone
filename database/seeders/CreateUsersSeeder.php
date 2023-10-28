@@ -51,6 +51,7 @@ class CreateUsersSeeder extends Seeder
                 'email'=>'technician@example.com',
                  'role'=>'2',
                  'verification' => '1',
+                 'is_Online' => '1',
                 'password'=> bcrypt('123456'),
              ],
         ];

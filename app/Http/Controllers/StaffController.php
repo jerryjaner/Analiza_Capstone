@@ -18,7 +18,7 @@ class StaffController extends Controller
             $searchQuery = $request->input('search');
             $staff = PersonalInfo::with('user')
                 ->whereHas('user', function ($query) use ($searchQuery) {
-                    $query->orWhere('name', 'LIKE', "%$searchQuery%")
+                    $query->Where('name', 'LIKE', "%$searchQuery%")
                         ->orWhere('address', 'LIKE', "%$searchQuery%")
                         ->orWhere('cp', 'LIKE', "%$searchQuery%")
                         ->orWhere('email', 'LIKE', "%$searchQuery%");
@@ -29,9 +29,6 @@ class StaffController extends Controller
                     });
                 })
                 ->get();
-
-
-
             $staff->map(function ($item) {
                 $user = $item->user;
                 $item->name = $user->name;
@@ -39,9 +36,6 @@ class StaffController extends Controller
                 $item->cp = $user->cp;
                 $item->email = $user->email;
             });
-
-
-
         }
         else
         {

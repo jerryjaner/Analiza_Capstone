@@ -18,7 +18,7 @@ class TechnicianController extends Controller
             $searchQuery = $request->input('search');
             $technician = PersonalInfo::with('user')
                 ->whereHas('user', function ($query) use ($searchQuery) {
-                    $query->orWhere('gen_id', 'LIKE', "%$searchQuery%")
+                    $query->where('gen_id', 'LIKE', "%$searchQuery%")
                         ->orWhere('name', 'LIKE', "%$searchQuery%")
                         ->orWhere('address', 'LIKE', "%$searchQuery%")
                         ->orWhere('cp', 'LIKE', "%$searchQuery%")
@@ -37,6 +37,10 @@ class TechnicianController extends Controller
                 $item->cp = $user->cp;
                 $item->email = $user->email;
             });
+            return view('pages.admin.technician.index',[
+                'technician' => $technician,
+                'pagination' => $pagination
+            ]);
         }
         else
         {
@@ -46,11 +50,11 @@ class TechnicianController extends Controller
                     $query->where('role', '2');
                 })
                 ->paginate(5);
+                return view('pages.admin.technician.index',[
+                    'technician' => $technician,
+                    'pagination' => $pagination
+                ]);
         }
-        return view('pages.admin.technician.index',[
-            'technician' => $technician,
-            'pagination' => $pagination
-        ]);
 
     }
 

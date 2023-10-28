@@ -57,7 +57,7 @@ class WorkOrderController extends Controller
         }
         return view('pages.staff.request-list', [
             'work_order' => $work_order,
-            'user_technician' => User::where('role', '2') ->where('is_Online', '0')->get(),
+            'user_technician' => User::where('role', '2')->where('is_Online', '1')->get(),
         ]);
     }
 
