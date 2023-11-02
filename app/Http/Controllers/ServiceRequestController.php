@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\ServiceRequest;
+// use App\Models\ServiceRequest;
+use App\Models\{Service,ServiceRequest,User,AssignedTransactionAsset,Asset};
 
 class ServiceRequestController extends Controller
 {
@@ -15,7 +16,7 @@ class ServiceRequestController extends Controller
     public function requestLog(Request $request){
         if ($request->filled('search')) {
             $searchQuery = $request->input('search');
-        
+
             $request_log = ServiceRequest::with(['service', 'technician'])
                 ->where('user_id', auth()->user()->id)
                 ->where(function ($query) use ($searchQuery) {
@@ -44,7 +45,7 @@ class ServiceRequestController extends Controller
     public function requestProcess(Request $request){
         if ($request->filled('search')) {
             $searchQuery = $request->input('search');
-        
+
             $request_log = ServiceRequest::with(['service', 'technician'])
                 ->where('user_id', auth()->user()->id)
                 ->where(function ($query) use ($searchQuery) {
@@ -73,7 +74,7 @@ class ServiceRequestController extends Controller
     public function requestCompleted(Request $request){
         if ($request->filled('search')) {
             $searchQuery = $request->input('search');
-        
+
             $request_log = ServiceRequest::with(['service', 'technician'])
                 ->where('user_id', auth()->user()->id)
                 ->where(function ($query) use ($searchQuery) {
@@ -100,10 +101,31 @@ class ServiceRequestController extends Controller
     }
 
     public function serviceStatus(){
-        return view('pages.customer.service-status',[
-            'service_stat' => ServiceRequest::with(['service','technician'])->where('user_id', auth()->user()->id)->orderBy('id','DESC')->first(), 
+        // return view('pages.customer.service-status',[
+        //     'service_stat' => ServiceRequest::with(['service','technician'])->where('user_id', auth()->user()->id)->orderBy('id','DESC')->first(),
+        // ]);
+        $work_order = ServiceRequest::with(['service', 'technician'])->where('user_id', auth()->user()->id)->get();
+        return view('pages.customer.service-status', compact('work_order'));
+    }
+
+    public function CustomerAssetList($id){
+        $service = ServiceRequest::findOrFail($id)->with(['service', 'technician', 'user'])->where('id', $id)->get();
+        $assignedAssets = AssignedTransactionAsset::where('service_request_id', $id)->get();
+        $totalPriceAmount = $assignedAssets->sum('total_price_amount');
+        $totalCostLbc = $assignedAssets->sum('total_cost_lbc');
+
+
+        return view('pages.customer.customer_asset_list', [
+            'assets' => Asset::get(),
+            'assigned_asset' => $assignedAssets,
+            'req_info' => $service,
+            'req_id' => $id,
+            'totalPriceAmount' => $totalPriceAmount,
+            'totalCostLbc' => $totalCostLbc,
         ]);
     }
+
+
 
     public function store(Request $request)
     {
@@ -140,7 +162,7 @@ class ServiceRequestController extends Controller
     public function requestCancelList(Request $request){
         if ($request->filled('search')) {
             $searchQuery = $request->input('search');
-        
+
             $request_log = ServiceRequest::with(['service', 'technician'])
                 ->where('user_id', auth()->user()->id)
                 ->where(function ($query) use ($searchQuery) {

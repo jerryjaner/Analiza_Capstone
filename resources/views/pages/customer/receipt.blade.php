@@ -144,17 +144,17 @@ Work Order
 
                     <td class="w-40">
                         <div class="flex">
-                            <a href="javascript:;"
+                            {{-- <a href="javascript:;"
                                 data-toggle="modal"
                                 data-target="#view{{$data->id}}"
                                 class="view-dialog rounded-md p-1 w-35 text-white bg-theme-1 hover:bg-blue-400 xl:mr-3 flex">
                                 <i data-feather="eye"></i>
-                            </a>
-                            <a href="{{route('workorder.assetList',$data->id)}}"
+                            </a> --}}
+                            <a href="{{route('Customer_AssetList',$data->id)}}"
                                 class="view-dialog rounded-md p-1 w-35 text-white bg-theme-1 hover:bg-blue-400 xl:mr-3 flex">
                                 <i data-feather="database"></i>
                             </a>
-                            @if($data->status == 'Inprocess')
+                            {{-- @if($data->status == 'Inprocess')
                             <a href="javascript:;"
                                 data-toggle="modal"
                                 data-target="#edit{{$data->id}}"
@@ -167,11 +167,11 @@ Work Order
                                 class="cancel-dialog rounded-md p-1 w-35 text-white bg-theme-6 hover:bg-red-400 xl:mr-3 flex">
                                 <i data-feather="delete"></i>
                             </a>
-                            @endif
+                            @endif --}}
                         </div>
                     </td>
                 </tr>
-                <div class="modal" id="cancel{{$data->id}}">
+                {{-- <div class="modal" id="cancel{{$data->id}}">
                     <div class="modal__content">
                         <form action="{{route('request.request_cancel')}}" method="post">
                             @csrf
@@ -184,9 +184,9 @@ Work Order
                             <div class="px-5 pb-8 text-center"> <button type="button" data-dismiss="modal" class="button w-24 border text-gray-700 dark:border-dark-5 dark:text-gray-300 mr-1">No</button> <button type="submit" class="button w-24 bg-gray-600 text-white">Yes</button> </div>
                         </form>
                     </div>
-                </div>
+                </div> --}}
                 <!-- View Service Information -->
-                <div class="modal" id="view{{$data->id}}">
+                {{-- <div class="modal" id="view{{$data->id}}">
                     <div class="modal__content modal__content--lg p-5">
                         <form action="{{route('workorder.request.complete',$data->id)}}" method="post">
                             @csrf
@@ -253,10 +253,10 @@ Work Order
                             </div>
                         </form>
                     </div>
-                </div>
+                </div> --}}
 
                  <!-- Assign Technician -->
-                 <div class="modal" id="edit{{$data->id}}">
+                 {{-- <div class="modal" id="edit{{$data->id}}">
                     <div class="modal__content modal__content--lg p-5">
                         <form action="{{route('workorder.update.priority',$data->id)}}" method="post">
                             @csrf
@@ -321,7 +321,7 @@ Work Order
                             </div>
                         </form>
                     </div>
-                </div>
+                </div> --}}
                 @empty
                 <tr>
                     <td colspan="10" class="text-center text-red-500">No Data Found!</td>

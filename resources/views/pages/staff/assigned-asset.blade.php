@@ -23,7 +23,7 @@ Assets List
                             Add Materials
                         </h2>
                     </div>
-                  
+
                     <form action="{{route('workorder.assetList.store',$req_id)}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
@@ -32,7 +32,7 @@ Assets List
                                 <select  required="" name="asset_id" id="asset_id" class="input w-full border mt-2 flex-1 @error('asset_id') border-theme-6 @enderror">
                                     <option value="" disabled selected>--Select Material--</option>
                                     @foreach($assets as $data)
-                                    <option value="{{$data->id}}" 
+                                    <option value="{{$data->id}}"
                                             data-unit="{{$data->unit ?? 'n/a'}}"
                                             data-unit-price="{{$data->unit_price ?? 'n/a'}}"
                                             data-unit-cost="{{$data->unit_cost_lbc ?? 'n/a'}}">{{$data->materials}}</option>
@@ -51,30 +51,30 @@ Assets List
                                 <label for="qty">Quantity :</label>
                                 <input type="number" name="qty" min="1" max="50" class="input w-full" id="qty">
                             </div>
-                           
+
                         </div>
                         <div class="px-5 py-3 text-right border-t border-gray-200 dark:border-dark-5">
                             <button type="button" data-dismiss="modal" class="button w-20 border text-gray-700 dark:border-dark-5 dark:text-gray-300 mr-1">Cancel</button>
                             <button type="submit" class="button w-20 bg-theme-1 text-white">Save</button>
                         </div>
                     </form>
-                    
+
                 </div>
             </div>
             <!-- Modal end -->
         </div>
         <div class="hidden md:block mx-auto text-gray-600"></div>
-        
+
         <form method="GET">
         <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
             <div class="w-full xl:w-56 relative text-gray-700 dark:text-gray-300">
                 <input type="text" name="search" value="{{ request()->get('search') }}" class="input w-full xl:w-56 box pr-10 placeholder-theme-13" style="padding:10px; border-radius: 20px;" placeholder="Search...">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> 
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             </div>
         </div>
         </form>
     </div>
-   
+
 </div>
 
 @if (session()->has('success'))
@@ -155,7 +155,7 @@ Assets List
                         </div>
                     </td>
                 </tr>
-               
+
                 <div class="modal" id="delete{{$data->id}}">
                     <div class="modal__content">
                         <form action="{{route('workorder.assetList.delete',$data->id)}}" method="post">
@@ -186,7 +186,7 @@ Assets List
             </tbody>
         </table>
         <div class="mt-3">
-            
+
         </div>
     </div>
 </div>

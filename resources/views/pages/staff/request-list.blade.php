@@ -35,6 +35,7 @@ Work Order
                     <th class="bg-theme-1 text-xs text-white">Requested Service</th>
                     <th class="bg-theme-1 text-xs text-white">Customer Name</th>
                     <th class="bg-theme-1 text-xs text-white">Address</th>
+                    <th class="bg-theme-1 text-xs text-white">Landmark</th>
                     <th class="bg-theme-1 text-xs text-white">Mobile</th>
                     <th class="bg-theme-1 text-xs text-white">Technician</th>
                     <th class="bg-theme-1 text-xs text-white">Assigned Date</th>
@@ -71,6 +72,11 @@ Work Order
                     <td class="w-40">
                         <div class="flex">
                             {{$data->user->address ?? 'N/A'}}
+                        </div>
+                    </td>
+                    <td class="w-40">
+                        <div class="flex">
+                            {{$data->user->landmark ?? 'N/A'}}
                         </div>
                     </td>
 
@@ -152,6 +158,10 @@ Work Order
                                 <div class="col-span-12 sm:col-span-6">
                                     <label>Customer CP#</label>
                                     <input type="text" class="input w-full border mt-2 flex-1" value="{{$data->user->cp}}" readonly>
+                                </div>
+                                <div class="col-span-12">
+                                    <label>Landmark</label>
+                                    <textarea class="input w-full border mt-2 flex-1"  readonly>{{$data->user->landmark ?? 'N/A'}}</textarea>
                                 </div>
                                 <hr class="col-span-12 mt-2">
                                 <div class="col-span-12">

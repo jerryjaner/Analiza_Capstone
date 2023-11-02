@@ -28,13 +28,13 @@ Request History Log
                         <div class="flex">
                             @if(isset($service_stat->status))
                                 @if($service_stat->status == 'Pending')
-                                <span class="text-red-700">{{$service_stat->status ?? 'N/A'}}</span>   
+                                <span class="text-red-700">{{$service_stat->status ?? 'N/A'}}</span>
                                 @elseif($service_stat->status == 'Inprocess')
-                                <span class="text-blue-700">{{$service_stat->status ?? 'N/A'}}</span>   
+                                <span class="text-blue-700">{{$service_stat->status ?? 'N/A'}}</span>
                                 @elseif($service_stat->status == 'Completed')
-                                <span class="text-green-700">{{$service_stat->status ?? 'N/A'}}</span>   
+                                <span class="text-green-700">{{$service_stat->status ?? 'N/A'}}</span>
                                 @else
-                                <span class="text-gray-700">{{'Cancelled'}}</span>   
+                                <span class="text-gray-700">{{'Cancelled'}}</span>
                                 @endif
                             @else
                                 <span>N/A</span>
@@ -104,6 +104,18 @@ Request History Log
                     <td>
                         <div class="flex">
                             {{auth()->user()->address ?? 'N/A'}}
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="flex">
+                            <p class="text-md font-semibold"> Landmark</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="flex">
+                            {{auth()->user()->landmark ?? 'N/A'}}
                         </div>
                     </td>
                 </tr>

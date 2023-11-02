@@ -14,6 +14,7 @@ use App\Http\Controllers\{
     AssignedRequestController,
     RegisterController,
     CustomerController,
+    TestController,
 
 
 };
@@ -22,6 +23,13 @@ Route::redirect('/', 'login');
 
 
 Route::post('/signup',[RegisterController::class, 'signup'])->name('register_signup');
+
+// Route::get('/test',[TestController::class, 'test']);
+// Route::get('/customer/assets/{id}',[TestController::class, 'Customer_AssetList'])->name('Customer_AssetList');
+
+
+
+
 
 
 
@@ -101,8 +109,13 @@ Route::middleware([
     ->as('request.')
     ->prefix('request')
     ->group(function(){
+
+
         Route::get('/request_form','requestForm')->name('request_form');
         Route::get('/status','serviceStatus')->name('service_status');
+        Route::get('/customer/assets/{id}','CustomerAssetList')->name('Customer_AssetList');
+
+
         Route::post('/store','store')->name('store');
         Route::get('/request-log','requestLog')->name('request_log');
         Route::put('/request-cancel','requestCancel')->name('request_cancel');
@@ -110,6 +123,9 @@ Route::middleware([
         Route::get('/request-process','requestProcess')->name('request_process');
         Route::get('/request-completed','requestCompleted')->name('request_completed');
         Route::get('/print','printRequestStatus')->name('request_print');
+
+
+
     });
     Route::controller(WorkOrderController::class)
     ->as('workorder.')

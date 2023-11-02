@@ -24,6 +24,8 @@ class ServiceRequest extends Model
         'priority',
     ];
 
+
+
     public function service(){
         return $this->belongsTo(Service::class);
     }
@@ -50,4 +52,7 @@ class ServiceRequest extends Model
     {
         return static::max('req_no') ? intval(substr(static::max('req_no'), 8)) : 0;
     }
+
+
+
 }

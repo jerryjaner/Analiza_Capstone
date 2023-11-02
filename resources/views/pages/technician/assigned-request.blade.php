@@ -187,6 +187,10 @@ Assigned Work Order
                                     <label>Customer CP#</label>
                                     <input type="text" class="input w-full border mt-2 flex-1" value="{{$data->user->cp}}" readonly>
                                 </div>
+                                <div class="col-span-12">
+                                    <label>Landmark</label>
+                                    <textarea class="input w-full border mt-2 flex-1" value="" readonly>{{$data->user->landmark ?? 'N/A'}}</textarea>
+                                </div>
                                 <hr class="col-span-12 mt-2">
                                 <div class="col-span-12">
                                     <label>Request Information</label>
@@ -249,6 +253,10 @@ Assigned Work Order
                                 <div class="col-span-12 sm:col-span-6">
                                     <label>Customer CP#</label>
                                     <input type="text" class="input w-full border mt-2 flex-1" value="{{$data->user->cp}}" readonly>
+                                </div>
+                                <div class="col-span-12">
+                                    <label>Landmark</label>
+                                    <textarea class="input w-full border mt-2 flex-1" value="" readonly>{{$data->user->landmark ?? 'N/A'}}</textarea>
                                 </div>
                                 <hr class="col-span-12 mt-2">
                                 <div class="col-span-12">
@@ -400,6 +408,10 @@ Assigned Work Order
                                     <label>Customer CP#</label>
                                     <input type="text" class="input w-full border mt-2 flex-1" value="{{$data->user->cp}}" readonly>
                                 </div>
+                                <div class="col-span-12">
+                                    <label>Landmark</label>
+                                    <textarea class="input w-full border mt-2 flex-1" value="" readonly>{{$data->user->landmark ?? 'N/A'}}</textarea>
+                                </div>
                                 <hr class="col-span-12 mt-2">
                                 <div class="col-span-12">
                                     <label>Request Information</label>
@@ -462,6 +474,10 @@ Assigned Work Order
                                 <div class="col-span-12 sm:col-span-6">
                                     <label>Customer CP#</label>
                                     <input type="text" class="input w-full border mt-2 flex-1" value="{{$data->user->cp}}" readonly>
+                                </div>
+                                <div class="col-span-12">
+                                    <label>Landmark</label>
+                                    <textarea class="input w-full border mt-2 flex-1" value="" readonly>{{$data->user->landmark ?? 'N/A'}}</textarea>
                                 </div>
                                 <hr class="col-span-12 mt-2">
                                 <div class="col-span-12">
@@ -612,6 +628,10 @@ Assigned Work Order
                                     <label>Customer CP#</label>
                                     <input type="text" class="input w-full border mt-2 flex-1" value="{{$data->user->cp}}" readonly>
                                 </div>
+                                <div class="col-span-12">
+                                    <label>Landmark</label>
+                                    <textarea class="input w-full border mt-2 flex-1" value="" readonly>{{$data->user->landmark ?? 'N/A'}}</textarea>
+                                </div>
                                 <hr class="col-span-12 mt-2">
                                 <div class="col-span-12">
                                     <label>Request Information</label>
@@ -674,6 +694,10 @@ Assigned Work Order
                                 <div class="col-span-12 sm:col-span-6">
                                     <label>Customer CP#</label>
                                     <input type="text" class="input w-full border mt-2 flex-1" value="{{$data->user->cp}}" readonly>
+                                </div>
+                                <div class="col-span-12">
+                                    <label>Landmark</label>
+                                    <textarea class="input w-full border mt-2 flex-1" value="" readonly>{{$data->user->landmark ?? 'N/A'}}</textarea>
                                 </div>
                                 <hr class="col-span-12 mt-2">
                                 <div class="col-span-12">
@@ -826,8 +850,7 @@ Assigned Work Order
                                 </div>
                                 <div class="col-span-12">
                                     <label>Landmark</label>
-                                    {{-- <input type="text" > --}}
-                                    <textarea class="input w-full border mt-2 flex-1" value="" readonly>{{$data->user   ->landmark ?? 'N/A'}}</textarea>
+                                    <textarea class="input w-full border mt-2 flex-1" value="" readonly>{{$data->user->landmark ?? 'N/A'}}</textarea>
                                 </div>
                                 <hr class="col-span-12 mt-2">
                                 <div class="col-span-12">
@@ -891,6 +914,10 @@ Assigned Work Order
                                 <div class="col-span-12 sm:col-span-6">
                                     <label>Customer CP#</label>
                                     <input type="text" class="input w-full border mt-2 flex-1" value="{{$data->user->cp}}" readonly>
+                                </div>
+                                <div class="col-span-12">
+                                    <label>Landmark</label>
+                                    <textarea class="input w-full border mt-2 flex-1" value="" readonly>{{$data->user->landmark ?? 'N/A'}}</textarea>
                                 </div>
                                 <hr class="col-span-12 mt-2">
                                 <div class="col-span-12">
