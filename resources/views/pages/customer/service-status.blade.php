@@ -206,6 +206,7 @@ Service Status
     <h2 class="intro-y text-lg font-medium mr-5 text-center">Service Status</h2>
         <div class="hidden md:block mx-auto text-gray-600"></div>
 
+
         <form method="GET">
         <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
             <div class="w-full xl:w-56 relative text-gray-700 dark:text-gray-300">

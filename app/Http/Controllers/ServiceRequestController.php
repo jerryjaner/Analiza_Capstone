@@ -189,6 +189,7 @@ class ServiceRequestController extends Controller
     }
 
     public function printRequestStatus(){
+
         return view('pages.customer.print-service-status');
     }
 

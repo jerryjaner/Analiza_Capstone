@@ -1,4 +1,4 @@
-@extends('layouts.staff')
+@extends('layouts.customer')
 
 @section('title')
 Assets
@@ -112,8 +112,6 @@ Assets
 @section('content')
 <div class="grid grid-cols-12 gap-6 mt-5">
     <button type="button" class="button bg-theme-1 flex items-center w-20 border text-white dark:border-dark-5 dark:text-white" onclick="window.history.go(-1); return false;"><i data-feather="arrow-left"></i> Back</button>
-
-
 </div>
 
 @if (session()->has('success'))
@@ -150,11 +148,10 @@ Assets
 @endif
 
 
-
-<div class="invoice-box" id="printableArea" >
+<div class="invoice-box" id="myDiv" >
     <table cellpadding="0" cellspacing="0">
 
-        <tr class="top"  id="printThis">
+        <tr class="top"  >
             <td colspan="3" >
                 <table>
                     <tr>
@@ -290,10 +287,12 @@ Assets
                         <br>
                         <br>
                         ...................................
+
                         <br>
                         <br>
                         <br>
                     </td>
+
                 </tr>
              </table>
            </td>
@@ -346,5 +345,7 @@ Assets
         });
     });
 </script>
+
+
 
 @endpush
