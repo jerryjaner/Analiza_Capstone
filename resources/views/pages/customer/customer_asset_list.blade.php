@@ -11,6 +11,40 @@ Assets
 
 <style>
 
+@media print {
+
+
+
+            .logo img {
+                display: block;
+                margin: 0 auto;
+                margin-left: 35% !important;
+                border-radius: 30px;
+                width: 70px; /* Adjust the width as needed */
+                height: 70px; /* Adjust the height as needed */
+            }
+
+            .header h4 {
+
+                margin-left: 250px;
+                font-family: 'Poppins', sans-serif;
+                margin-bottom: 10%;
+
+            }
+
+            .signature{
+
+                margin-left: 50%;
+            }
+
+            .dot{
+
+                margin-left: 50%;
+
+            }
+
+        }
+
     .header{
       text-align: center;
     }
@@ -19,10 +53,9 @@ Assets
       margin-left: 20%;
     }
     .header h4{
-      /* position: relative; */
+
       margin-right: 20%;
       margin-top: 10px;
-      /* line-height: 0.9px; */
       font-family: 'Poppins', sans-serif;
     }
 
@@ -108,11 +141,16 @@ Assets
     .rtl table tr td:nth-child(2) {
         text-align: left;
     }
+
+
 </style>
 @section('content')
-<div class="grid grid-cols-12 gap-6 mt-5">
+<div class="grid grid-cols-12 gap-6 mt-5 mb-10">
     <button type="button" class="button bg-theme-1 flex items-center w-20 border text-white dark:border-dark-5 dark:text-white" onclick="window.history.go(-1); return false;"><i data-feather="arrow-left"></i> Back</button>
+    <button   onclick="printDiv('contentToPrint')" type="button" class="button bg-theme-1 flex items-center w-20 border text-white dark:border-dark-5 dark:text-white" style="background-color: green; "><i data-feather="printer"></i> Print</button>
 </div>
+
+
 
 @if (session()->has('success'))
 <div id="alert-border-3" class="flex items-center p-4 mt-4 text-green-800 border-t-4 border-green-300 bg-green-50 dark:text-green-400 dark:bg-gray-800 dark:border-green-800" role="alert">
@@ -148,29 +186,22 @@ Assets
 @endif
 
 
-<div class="invoice-box" id="myDiv" >
+<div class="invoice-box" id="contentToPrint" >
     <table cellpadding="0" cellspacing="0">
-
         <tr class="top"  >
             <td colspan="3" >
                 <table>
                     <tr>
                         <td>
-
                             <div class="header">
                                 <div class="logo">
                                     <img class="w-20" src="{{asset('img/logo.png')}}" style="border-radius:30px;">
                                    <h4>
                                      <b>BULAN WATER DISTRICT</b> <br>
                                        De Vera St., Zone 4, Bulan, Sorsogon <br>
-
                                    </h4>
-
-
                                 </div>
                             </div>
-
-
                         </td>
                     </tr>
                 </table>
@@ -282,11 +313,11 @@ Assets
                  <tr>
                     <td width="50%">
                     </td>
-                    <td>
-                         <b> Authorized Signature </b>
+                    <td  >
+                         <b class="signature"> Authorized Signature </b>
                         <br>
                         <br>
-                        ...................................
+                           <p class="dot">...................................</p>
 
                         <br>
                         <br>
@@ -345,7 +376,18 @@ Assets
         });
     });
 </script>
+<script>
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
 
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+</script>
 
 
 @endpush
