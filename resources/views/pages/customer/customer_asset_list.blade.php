@@ -25,10 +25,21 @@ Assets
             }
 
             .header h4 {
-
+                display: block;
                 margin-left: 250px;
                 font-family: 'Poppins', sans-serif;
                 margin-bottom: 10%;
+
+            }
+
+            .invoice_table{
+
+                margin-top: 10%;
+            }
+
+            .authorization{
+
+                margin-left: 10%;
 
             }
 
@@ -236,7 +247,7 @@ Assets
             </td>
         </tr>
         <td colspan="3">
-        <table cellspacing="0px" cellpadding="2px">
+        <table cellspacing="0px" cellpadding="2px" class="invoice_table">
         <tr class="heading">
             <td style="width:10%;">
                 QTY.
@@ -244,44 +255,44 @@ Assets
             <td style="width:10%; text-align:center;">
                 UNIT
             </td>
-            <td style="width:30%; text-align:right;">
+            <td style="width:30%; text-align:center;">
                 MATERIALS
             </td>
-             <td style="width:15%; text-align:right;">
+             <td style="width:15%; text-align:center;">
                UNIT PRICE
             </td>
-             <td style="width:15%; text-align:right;">
+             <td style="width:15%; text-align:center;">
                AMOUNT
             </td>
-             <td style="width:15%; text-align:right;">
+             <td style="width:15%; text-align:center;">
                UNIT COST
             </td>
-            <td style="width:15%; text-align:right;">
+            <td style="width:15%; text-align:center;">
                 AMOUNT
              </td>
         </tr>
         @foreach($assigned_asset as $data)
 
         <tr class="item">
-            <td style="width:25%;">
+            <td style="width:10%;">
                 {{$data->qty ?? 'n/a'}}
               </td>
               <td style="width:10%; text-align:center;">
                 {{$data->asset->unit ?? 'n/a'}}
               </td>
-              <td style="width:30%; text-align:right;">
+              <td style="width:30%; text-align:center;">
                 {{$data->asset->materials ?? 'n/a'}}
               </td>
-              <td style="width:15%; text-align:right;">
+              <td style="width:15%; text-align:center;">
                 {{number_format($data->unit_price, 2, '.', ',') ?? 'n/a'}}
               </td>
-              <td style="width:15%; text-align:right;">
+              <td style="width:15%; text-align:center;">
                 {{number_format($data->total_price_amount, 2, '.', ',') ?? 'n/a'}}
               </td>
-              <td style="width:15%; text-align:right;">
+              <td style="width:15%; text-align:center;">
                 {{number_format($data->unit_cost_lbc, 2, '.', ',') ?? 'n/a'}}
               </td>
-              <td style="width:15%; text-align:right;">
+              <td style="width:15%; text-align:center;">
                 {{number_format($data->total_cost_lbc, 2, '.', ',') ?? 'n/a'}}
               </td>
           </tr>
@@ -300,14 +311,17 @@ Assets
            <td colspan="3">
              <table cellspacing="0px" cellpadding="2px">
                 <tr>
-                    <td width="50%">
+                    <td width="50%" >
+
                         <b> Declaration: </b> <br>
                         We declare that this invoice shows the actual price of the goods
                         described above and that all particulars are true and correct.
                     </td>
                     <td>
-                     * This is a computer generated invoice and does not
-                      require a physical signature
+                        <p class="authorization">
+                           * This is a computer generated invoice and does not
+                            require a physical signature</p>
+
                     </td>
                 </tr>
                  <tr>
