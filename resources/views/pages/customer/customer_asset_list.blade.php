@@ -13,48 +13,46 @@ Assets
 
 @media print {
 
+        .logo img {
+            display: block;
+            margin: 0 auto;
+            margin-left: 35% !important;
+            border-radius: 30px;
+            width: 70px; /* Adjust the width as needed */
+            height: 70px; /* Adjust the height as needed */
+        }
 
-
-            .logo img {
-                display: block;
-                margin: 0 auto;
-                margin-left: 35% !important;
-                border-radius: 30px;
-                width: 70px; /* Adjust the width as needed */
-                height: 70px; /* Adjust the height as needed */
-            }
-
-            .header h4 {
-                display: block;
-                margin-left: 250px;
-                font-family: 'Poppins', sans-serif;
-                margin-bottom: 10%;
-
-            }
-
-            .invoice_table{
-
-                margin-top: 10%;
-            }
-
-            .authorization{
-
-                margin-left: 10%;
-
-            }
-
-            .signature{
-
-                margin-left: 50%;
-            }
-
-            .dot{
-
-                margin-left: 50%;
-
-            }
+        .header h4 {
+            display: block;
+            margin-left: 250px;
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 10%;
 
         }
+
+        .invoice_table{
+
+            margin-top: 10%;
+        }
+
+        .authorization{
+
+            margin-left: 10%;
+
+        }
+
+        .signature{
+
+            margin-left: 50%;
+        }
+
+        .dot{
+
+            margin-left: 50%;
+
+        }
+
+    }
 
     .header{
       text-align: center;
@@ -390,6 +388,8 @@ Assets
         });
     });
 </script>
+
+{{-- FOR THE PRINTING OF RECEIPT--}}
 <script>
     function printDiv(divName) {
         var printContents = document.getElementById(divName).innerHTML;

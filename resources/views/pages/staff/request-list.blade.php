@@ -199,7 +199,9 @@ Work Order
                @endforelse
             </tbody>
         </table>
-
+        @if($pagination <> false)
+        {!! $work_order->links() !!}
+        @endif
     </div>
 </div>
 

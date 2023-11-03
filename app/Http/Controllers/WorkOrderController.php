@@ -31,6 +31,7 @@ class WorkOrderController extends Controller
                 ->paginate(5);
         }
         return view('pages.staff.work-order', [
+            'pagination' => $pagination,
             'work_order' => $work_order,
             'user_technician' => User::where('role', '2')->get(),
         ]);
@@ -53,9 +54,13 @@ class WorkOrderController extends Controller
         } else {
             $pagination = true;
             $work_order = ServiceRequest::with(['service', 'technician'])
+                 ->where('status', 'Pending')
                 ->paginate(5);
         }
+
+
         return view('pages.staff.request-list', [
+            'pagination' => $pagination,
             'work_order' => $work_order,
             'user_technician' => User::where('role', '2')->where('is_Online', '1')->get(),
         ]);

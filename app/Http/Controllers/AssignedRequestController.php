@@ -32,6 +32,7 @@ class AssignedRequestController extends Controller
                 ->paginate(5);
         }
         return view('pages.technician.assigned-request', [
+            'pagination' => $pagination,
             'work_order' => $work_order,
             'user_technician' => User::where('role', '2')->get(),
         ]);

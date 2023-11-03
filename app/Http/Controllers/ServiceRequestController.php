@@ -36,7 +36,7 @@ class ServiceRequestController extends Controller
         } else {
             $pagination = true;
             return view('pages.customer.request-log', [
-                'request_log' => ServiceRequest::with(['service', 'technician'])->where('user_id', auth()->user()->id)->paginate(5),
+                'request_log' => ServiceRequest::with(['service', 'technician'])->where('user_id', auth()->user()->id)->where('status', 'Pending')->paginate(5),
                 'pagination' => $pagination
             ]);
         }
@@ -65,7 +65,7 @@ class ServiceRequestController extends Controller
         } else {
             $pagination = true;
             return view('pages.customer.request-process', [
-                'request_log' => ServiceRequest::with(['service', 'technician'])->where('user_id', auth()->user()->id)->paginate(5),
+                'request_log' => ServiceRequest::with(['service', 'technician'])->where('user_id', auth()->user()->id)->where('status', 'Inprocess')->paginate(5),
                 'pagination' => $pagination
             ]);
         }
@@ -94,7 +94,7 @@ class ServiceRequestController extends Controller
         } else {
             $pagination = true;
             return view('pages.customer.request-completed', [
-                'request_log' => ServiceRequest::with(['service', 'technician'])->where('user_id', auth()->user()->id)->paginate(5),
+                'request_log' => ServiceRequest::with(['service', 'technician'])->where('user_id', auth()->user()->id)->where('status', 'Completed')->paginate(5),
                 'pagination' => $pagination
             ]);
         }
@@ -106,6 +106,7 @@ class ServiceRequestController extends Controller
         // ]);
         $work_order = ServiceRequest::with(['service', 'technician'])->where('user_id', auth()->user()->id)->get();
         return view('pages.customer.service-status', compact('work_order'));
+
     }
 
     public function CustomerAssetList($id){
@@ -182,7 +183,7 @@ class ServiceRequestController extends Controller
         } else {
             $pagination = true;
             return view('pages.customer.request-cancelled', [
-                'request_log' => ServiceRequest::with(['service', 'technician'])->where('user_id', auth()->user()->id)->paginate(5),
+                'request_log' => ServiceRequest::with(['service', 'technician'])->where('user_id', auth()->user()->id)->where('status', 'Cancelled')->paginate(5),
                 'pagination' => $pagination
             ]);
         }
