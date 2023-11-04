@@ -13,6 +13,7 @@ class SellController extends Controller
         if ($request->filled('search')) {
             $searchQuery = $request->input('search');
 
+            $assignedAssets = AssignedTransactionAsset::get();
             $request_log = ServiceRequest::with(['service', 'technician'])
                 ->where(function ($query) use ($searchQuery) {
                     $query->where('req_no', 'LIKE', "%$searchQuery%")
@@ -26,6 +27,7 @@ class SellController extends Controller
             $pagination = false;
             return view('pages.admin.report.sell', [
                 'request_log' => $request_log,
+                'assignedAssets' => $assignedAssets,
                 'pagination' => $pagination
             ]);
         } else {
@@ -76,17 +78,40 @@ class SellController extends Controller
 
     public function summary()
     {
-        $usersByBarangay = User::where('role','0')->with('serviceRequests')
-        ->whereNotNull('address')
-        ->get()
-        ->groupBy('address')
-        ->map(function ($users) {
-            return $users->pluck('serviceRequests')->flatten()->count();
-        });
+        // $usersByBarangay = User::where('role','0')->with('serviceRequests')
+        //                 ->whereNotNull('address')
+        //                 ->get()
+        //                 ->groupBy('address')
+        //                 ->map(function ($users) {
+        //                     return $users->pluck('serviceRequests')->flatten()->count();
+        //                 });
+
+        // return view('pages.admin.report.summary',[
+        //     'usersByBarangay' => $usersByBarangay ,
+        // ]);
+
+         $pagination = true;
+         $usersByBarangay = User::where('role','0')->with('serviceRequests')
+                        ->whereNotNull('address')
+                        ->get()
+                        ->groupBy('address')
+                        ->map(function ($users) {
+                            return $users->pluck('serviceRequests')->flatten()->count();
+                        });
 
         return view('pages.admin.report.summary',[
-            'usersByBarangay' => $usersByBarangay ,
+            'usersByBarangay' => $usersByBarangay,
+            'pagination' => $pagination
         ]);
+
+
+
+
+
+
+
+
+
     }
 
     public function edit($id)

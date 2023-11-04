@@ -33,8 +33,8 @@ class PageController extends Controller
 
                 return view('pages.admin.index',[
                     'count_customer' => User::where('role', '0')->count(),
-                    'count_staff' => User::where('role', '2')->count(),
-                    'count_technician' => User::where('role', '3')->count(),
+                    'count_staff' => User::where('role', '3')->count(),
+                    'count_technician' => User::where('role', '2')->count(),
                     'work_order' => $work_order,
                     'user_technician' => User::where('role', '2')->get(),
                     'count_request' => ServiceRequest::where('created_at', 'like', "%$searchQuery%")->count(),

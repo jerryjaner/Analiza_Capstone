@@ -91,7 +91,8 @@ class ServiceRequestController extends Controller
                 'request_log' => $request_log,
                 'pagination' => $pagination
             ]);
-        } else {
+        }
+         else {
             $pagination = true;
             return view('pages.customer.request-completed', [
                 'request_log' => ServiceRequest::with(['service', 'technician'])->where('user_id', auth()->user()->id)->where('status', 'Completed')->paginate(5),
@@ -100,12 +101,42 @@ class ServiceRequestController extends Controller
         }
     }
 
-    public function serviceStatus(){
+    public function serviceStatus(Request $request){
+
+        //OLD CODE
         // return view('pages.customer.service-status',[
         //     'service_stat' => ServiceRequest::with(['service','technician'])->where('user_id', auth()->user()->id)->orderBy('id','DESC')->first(),
         // ]);
-        $work_order = ServiceRequest::with(['service', 'technician'])->where('user_id', auth()->user()->id)->get();
-        return view('pages.customer.service-status', compact('work_order'));
+
+        //NEW CODE
+        // $work_order = ServiceRequest::with(['service', 'technician'])->where('user_id', auth()->user()->id)->get();
+        // return view('pages.customer.service-status', compact('work_order'));
+
+        if ($request->filled('search')) {
+            $searchQuery = $request->input('search');
+
+            $work_order = ServiceRequest::with(['service', 'technician'])
+                ->where('user_id', auth()->user()->id)
+                ->where(function ($query) use ($searchQuery) {
+                    $query->where('req_no', 'LIKE', "%$searchQuery%")
+                        //   ->orWhere('date_assigned', 'LIKE', "%$searchQuery%");
+                        ->orWhereRaw("DATE_FORMAT(date_assigned, '%Y-%m-%d') LIKE ?", ["%$searchQuery%"]);
+                })->get();
+
+            $pagination = false;
+            return view('pages.customer.service-status', [
+                'work_order' => $work_order,
+                'pagination' => $pagination
+            ]);
+        }
+         else {
+
+            $pagination = true;
+            return view('pages.customer.service-status', [
+                'work_order' => ServiceRequest::with(['service', 'technician'])->where('user_id', auth()->user()->id)->paginate(5),
+                'pagination' => $pagination
+            ]);
+        }
 
     }
 

@@ -1,4 +1,4 @@
-@extends('layouts.staff')
+@extends('layouts.customer')
 
 @section('title')
 Work Order
