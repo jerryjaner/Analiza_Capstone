@@ -65,7 +65,7 @@ Staff
                     <th class="bg-theme-1 text-xs text-white">Position</th>
                     <th class="bg-theme-1 text-xs text-white">Name</th>
                     <th class="bg-theme-1 text-xs text-white">Address</th>
-                    <th class="bg-theme-1 text-xs text-white">Eamil</th>
+                    <th class="bg-theme-1 text-xs text-white">Email</th>
                     <th class="bg-theme-1 text-xs text-white">Mobile No.</th>
                     <th class="bg-theme-1 text-xs text-white" style="border-top-right-radius: 20px;">Action</th>
                 </tr>

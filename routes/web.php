@@ -15,6 +15,7 @@ use App\Http\Controllers\{
     RegisterController,
     CustomerController,
     TestController,
+    SearchAccountController,
 
 
 };
@@ -23,6 +24,8 @@ Route::redirect('/', 'login');
 
 
 Route::post('/signup',[RegisterController::class, 'signup'])->name('register_signup');
+// Route::get('/search-account',[SearchAccountController::class,'search_account'])->name('search_account');
+Route::get('/account', [SearchAccountController::class, 'search'])->name('account.search');
 
 // Route::get('/test',[TestController::class, 'test']);
 // Route::get('/customer/assets/{id}',[TestController::class, 'Customer_AssetList'])->name('Customer_AssetList');

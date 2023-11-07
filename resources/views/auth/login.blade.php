@@ -3,6 +3,9 @@
 Login | SRMS
 @endsection
 @section('content')
+<style>
+
+</style>
 <form method="POST" action="{{ route('login') }}">
     @csrf
     <div class="h-screen xl:h-auto flex py-5 xl:py-0 my-10 xl:my-0">
@@ -39,15 +42,28 @@ Login | SRMS
                 </div>
                 <a href="">Forgot Password?</a>
             </div>
-            <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">
+            {{-- old button --}}
+            {{-- <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">
                 <a href="{{route('register')}}" class="button button--lg w-full xl:w-32 text-white bg-theme-9 xl:mr-3 align-top w-100 float-left">Register</a>
                 <button class="button button--lg w-full xl:w-32 text-white bg-theme-1 xl:mr-3 align-top w-100 float-right">Login</button>
+
+            </div> --}}
+            <div class="intro-x mt-5">
+
+                <button class="button button--lg w-full xl:w-50 text-white bg-theme-1 xl:mr-3 align-top w-100 mb-2">Login</button>
+                <a  href="{{route('register')}}"class="button button--lg w-full xl:w-27 text-white bg-theme-9 align-top w-100 float-right mt-5">Register</a>
+                <a  href="{{route('account.search')}}"class="button button--lg w-full xl:w-27 text-white bg-theme-7 align-top w-100 float-right mt-5 mb-5">Search Account</a>
+
             </div>
+
+
             <div class="intro-x mt-10 xl:mt-24 text-gray-700 dark:text-gray-600 text-center xl:text-left">
                 By signin up, you agree to our
                 <br>
                 <a class="text-theme-1 dark:text-theme-10" href="javascript:;" data-toggle="modal" data-target="#agree">Terms and Conditions</a> & <a class="text-theme-1 dark:text-theme-10"  href="javascript:;" data-toggle="modal" data-target="#agree">Privacy Policy</a>
             </div>
+
+
         </div>
     </div>
 </form>
