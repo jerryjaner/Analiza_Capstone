@@ -16,12 +16,12 @@ Technician
             <a href="javascript:;" data-toggle="modal" data-target="#add" class="rounded-full p-2 w-full text-white text-center hover:bg-blue-400 bg-theme-1 xl:mr-3 flex"><i data-feather="plus"></i><i data-feather="users"></i></a>
         </div>
         <div class="hidden md:block mx-auto text-gray-600"></div>
-        
+
         <form method="GET">
         <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
             <div class="w-full xl:w-56 relative text-gray-700 dark:text-gray-300">
                 <input type="text" name="search" value="{{ request()->get('search') }}" class="input w-full xl:w-56 box pr-10 placeholder-theme-13" style="padding:10px; border-radius: 20px;" placeholder="Search...">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> 
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             </div>
         </div>
         </form>
@@ -65,17 +65,19 @@ Technician
                     <th class="bg-theme-1 text-xs text-white">Position</th>
                     <th class="bg-theme-1 text-xs text-white">Name</th>
                     <th class="bg-theme-1 text-xs text-white">Address</th>
-                    <th class="bg-theme-1 text-xs text-white">Eamil</th>
+                    <th class="bg-theme-1 text-xs text-white">Email</th>
                     <th class="bg-theme-1 text-xs text-white">Mobile No.</th>
                     <th class="bg-theme-1 text-xs text-white" style="border-top-right-radius: 20px;">Action</th>
                 </tr>
             </thead>
             <tbody>
+                @php($i=1)
                 @forelse($technician as $data)
                 <tr class="intro-x">
                     <td class="w-10">
                         <div class="flex">
-                            <p class="text-xs">{{$data->id}}</p>
+                            <p class="text-xs">{{$i++}}</p>
+                            <p class="text-xs" hidden>{{$data->id}}</p>
                         </div>
                     </td>
                     <td class="w-40">
@@ -105,7 +107,7 @@ Technician
                     </td>
                     <td class="w-40">
                         <div class="flex">
-                            <a href="javascript:;" 
+                            <a href="javascript:;"
                                 data-id="{{$data->user->id}}"
                                 data-position="{{$data->position}}"
                                 data-name="{{$data->user->name}}"
@@ -114,13 +116,13 @@ Technician
                                 data-cp="{{$data->user->cp}}"
                                 data-gender="{{$data->gender}}"
                                 data-dob="{{$data->dob}}"
-                                data-toggle="modal" 
+                                data-toggle="modal"
                                 data-target="#view"
                                 class="view-dialog rounded-md p-1 w-35 text-white bg-theme-1 hover:bg-blue-400 xl:mr-3 flex">
                                 <i data-feather="eye"></i>
                             </a>
 
-                            <a href="javascript:;" 
+                            <a href="javascript:;"
                                 data-id="{{$data->user_id}}"
                                 data-position="{{$data->position}}"
                                 data-name="{{$data->user->name}}"
@@ -129,15 +131,15 @@ Technician
                                 data-cp="{{$data->user->cp}}"
                                 data-gender="{{$data->gender}}"
                                 data-dob="{{$data->dob}}"
-                                data-toggle="modal" 
+                                data-toggle="modal"
                                 data-target="#edit"
                                 class="view-dialog rounded-md p-1 w-35 text-white bg-theme-9 hover:bg-green-400 xl:mr-3 flex">
                                 <i data-feather="edit"></i>
                             </a>
 
                             <a href="javascript:;"
-                                data-id="{{$data->user_id}}" 
-                                data-toggle="modal" 
+                                data-id="{{$data->user_id}}"
+                                data-toggle="modal"
                                 data-target="#delete"
                                 class="delete-dialog rounded-md p-1 w-35 text-white bg-theme-6 hover:bg-red-400 xl:mr-3 flex">
                                 <i data-feather="delete"></i>
@@ -156,7 +158,7 @@ Technician
     </div>
 </div>
 @if($pagination <> false)
-{!! $technician->links() !!} 
+{!! $technician->links() !!}
 @endif
 <x-technician-modal />
 @endsection

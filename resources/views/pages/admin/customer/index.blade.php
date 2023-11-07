@@ -78,11 +78,14 @@ Customers
                 </tr>
             </thead>
             <tbody>
+
+                @php($i=1)
                 @forelse($customers as $data)
                 <tr class="intro-x">
                     <td class="w-10">
                         <div class="flex">
-                            <p class="text-xs">{{$data->id}}</p>
+                            <p class="text-xs">{{$i++}}</p>
+                            <p class="text-xs" hidden>{{$data->id}}</p>
                         </div>
                     </td>
                     <td class="w-40">
