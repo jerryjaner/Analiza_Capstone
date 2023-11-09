@@ -114,7 +114,8 @@ class ProfileController extends Controller
             $user->barangay = $request->barangay;
             $user->municipality = $request->municipality;
             $user->province = $request->province;
-            $user->address = $request->house_block_lot.' '.$request->street.' '.$request->subdivision.' '.$request->barangay.' '.$request->municipality.' '.$request->province;
+          //  $user->address = $request->house_block_lot.' '.$request->street.' '.$request->subdivision.' '.$request->barangay.' '.$request->municipality.' '.$request->province;
+            $user->address = $request->barangay;
             $user->landmark = $request->landmark;
         }
         else{

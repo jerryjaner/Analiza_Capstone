@@ -120,8 +120,9 @@ Request History Log
                                 </div>
                                 <div class="col-span-12 sm:col-span-6">
                                     <label>Customer Address</label>
-                                    <input type="text" class="input w-full border mt-2 flex-1" value="{{$data->user->address}}" readonly>
+                                    <input type="text" class="input w-full border mt-2 flex-1"  value="{{$data->user->house_block_lot}} {{$data->user->street}} {{$data->user->subdivision}} {{$data->user->barangay}} {{$data->user->municipality}} {{$data->user->province}} "readonly>
                                 </div>
+
                                 <div class="col-span-12 sm:col-span-6">
                                     <label>Customer Email</label>
                                     <input type="text" class="input w-full border mt-2 flex-1" value="{{$data->user->email}}" readonly>

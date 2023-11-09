@@ -229,7 +229,7 @@ Assets
 
                             <b>Name: </b>{{$data->user->name}}<br>
                             <b>Date: </b>{{$data->date_assigned}}<br>
-                            <b>Address: </b>{{$data->user->address}}<br>
+                            <b>Address: </b>{{$data->user->house_block_lot}} {{$data->user->street}} {{$data->user->subdivision}} {{$data->user->barangay}} {{$data->user->municipality}} {{$data->user->province}}<br>
                             <b>Account No: </b>{{$data->account_no}}<br>
 
                         </td>

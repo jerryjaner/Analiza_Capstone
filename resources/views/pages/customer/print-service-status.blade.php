@@ -103,7 +103,9 @@ Request History Log
                     </td>
                     <td>
                         <div class="flex">
-                            {{auth()->user()->address ?? 'N/A'}}
+                            {{-- {{auth()->user()->address ?? 'N/A'}} --}}
+                            {{$data->user->house_block_lot}} {{$data->user->street}} {{$data->user->subdivision}} {{$data->user->barangay}} {{$data->user->municipality}} {{$data->user->province}}
+
                         </div>
                     </td>
                 </tr>

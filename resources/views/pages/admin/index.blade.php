@@ -179,6 +179,10 @@ Dashboard
                                     <label>Request Description</label>
                                     <textarea class="input w-full mt-2 flex-1 border" id="" cols="30" rows="5" readonly>{{$data->service->description ?? 'N/A'}}</textarea>
                                 </div>
+                                <div class="col-span-12">
+                                    <label>Concerns</label>
+                                    <textarea class="input w-full mt-2 flex-1 border" id="" cols="30" rows="5" readonly>{{$data->concern ?? 'N/A'}}</textarea>
+                                </div>
                                 <div class="col-span-12 sm:col-span-8">
                                 </div>
                                 <div class="col-span-12 sm:col-span-4 text-right">

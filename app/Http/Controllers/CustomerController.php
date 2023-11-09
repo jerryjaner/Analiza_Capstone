@@ -72,8 +72,10 @@ class CustomerController extends Controller
             'cp' => $validated['cp'],
             'role' => '0',
             'verification' => '1',
-            'address' => $validated['house_block_lot'].','.$validated['street'].','.$validated['subdivision'].','.$validated['municipality'].','.$validated['province'],
-           // 'is_Approved' => '1',
+           // 'address' => $validated['house_block_lot'].','.$validated['street'].','.$validated['subdivision'].','.$validated['municipality'].','.$validated['province'],
+           // 'address' => $validated['house_block_lot'].','.$validated['street'].','.$validated['subdivision'].','.$validated['barangay'].','.$validated['municipality'].','.$validated['province'],
+           'address' => $validated['barangay'],
+            // 'is_Approved' => '1',
         ]);
 
 
@@ -114,8 +116,9 @@ class CustomerController extends Controller
             'landmark' => $validated['landmark'],
             'email' => $validated['email'],
             'cp' => $validated['cp'],
-            'address' => $validated['house_block_lot'].','.$validated['street'].','.$validated['subdivision'].','.$validated['municipality'].','.$validated['province'],
-
+            //'address' => $validated['house_block_lot'].','.$validated['street'].','.$validated['subdivision'].','.$validated['municipality'].','.$validated['province'],
+          //  'address' => $validated['house_block_lot'].','.$validated['street'].','.$validated['subdivision'].','.$validated['barangay'].','.$validated['municipality'].','.$validated['province'],
+          'address' => $validated['barangay'],
         ]);
 
         return redirect()->back()->with('message', 'Customer Successfully Updated!');
@@ -188,8 +191,10 @@ class CustomerController extends Controller
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
             'cp' => $validated['cp'],
-            'address' => $validated['house_block_lot'].','.$validated['street'].','.$validated['subdivision'].','.$validated['municipality'].','.$validated['province'],
-
+            // 'address' => $validated['house_block_lot'].','.$validated['street'].','.$validated['subdivision'].','.$validated['municipality'].','.$validated['province'],
+            //WITH BRGY
+            // 'address' => $validated['house_block_lot'].','.$validated['street'].','.$validated['subdivision'].','.$validated['barangay'].','.$validated['municipality'].','.$validated['province'],
+            'address' => $validated['barangay'],
             'role' => '0',
             'verification' => '1',
            // 'is_Approved' => '1',
@@ -231,8 +236,8 @@ class CustomerController extends Controller
             'landmark' => $validated['landmark'],
             'email' => $validated['email'],
             'cp' => $validated['cp'],
-            'address' => $validated['house_block_lot'].','.$validated['street'].','.$validated['subdivision'].','.$validated['municipality'].','.$validated['province'],
-
+           // 'address' => $validated['house_block_lot'].','.$validated['street'].','.$validated['subdivision'].','.$validated['barangay'].','.$validated['municipality'].','.$validated['province'],
+           'address' => $validated['barangay'],
         ]);
 
         return redirect()->back()->with('message', 'Customer Successfully Updated!');

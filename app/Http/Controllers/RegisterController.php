@@ -39,8 +39,9 @@ class RegisterController extends Controller
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
             'cp' => $validated['cp'],
-            'address' => $validated['house_block_lot'].','.$validated['street'].','.$validated['subdivision'].','.$validated['municipality'].','.$validated['province'],
-            'role' => '0',
+            //'address' => $validated['house_block_lot'].','.$validated['street'].','.$validated['subdivision'].','.$validated['municipality'].','.$validated['province'],
+             'address' => $validated['barangay'],
+             'role' => '0',
            // 'is_Approved' => '0',
             'verification' => '0',
         ]);
