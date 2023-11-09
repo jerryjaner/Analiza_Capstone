@@ -1,5 +1,8 @@
 @php
-     $customer_not_approved = \App\Models\user::where('role','0')->where('verification', '0')->count();
+     $customer_not_approved = \App\Models\User::where('role','0')->where('verification', '0')->count();
+
+     $pending_request = \App\Models\ServiceRequest::where('status','Pending')->count();
+     $inprocess_request = \App\Models\ServiceRequest::where('status','Inprocess')->count();
 @endphp
 
 <nav class="side-nav">
@@ -28,12 +31,20 @@
             <a href="{{route('workorder.index')}}" class="side-menu {{(!request()->routeIs('workorder.index'))?'bg-theme-1':'bg-blue-500'}}">
                 <div class="side-menu__icon"> <i data-feather="calendar"></i> </div>
                 <div class="side-menu__title"> Work Order </div>
+
+                @if($inprocess_request > 0)
+                  <span class="badge right" style="background-color:yellow; padding:3px 10px; border-radius:10%; margin-right:10px;    color:black;" title="Not Approved Customer">{{$inprocess_request}}</span>
+                @endif
             </a>
         </li>
         <li>
             <a href="{{route('workorder.request.pending')}}" class="side-menu {{(!request()->routeIs('workorder.request.pending'))?'bg-theme-1':'bg-blue-500'}}">
                 <div class="side-menu__icon"> <i data-feather="align-left"></i> </div>
                 <div class="side-menu__title"> Requests </div>
+
+                @if($pending_request > 0)
+                   <span class="badge right" style="background-color:yellow; padding:3px 10px; border-radius:10%; margin-right:10px;    color:black;" title="Not Approved Customer">{{$pending_request}}</span>
+                 @endif
             </a>
         </li>
         <li>

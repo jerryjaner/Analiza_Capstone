@@ -195,7 +195,7 @@
 
                 <div class="col-span-12 sm:col-span-6">
                     <label>Account Number</label>
-                    <input type="text" required=""  name="account_no" class="input w-full border mt-2 flex-1 @error('account_no') border-theme-6 @enderror" value="{{old('account_no')}}" placeholder="Input Account Number">
+                    <input type="text" required="" pattern="[0-9]{3}-{1}[0-9]{2}-[0-9]{5}" minlength="12" maxlength="12"  name="account_no" class="input w-full border mt-2 flex-1 @error('account_no') border-theme-6 @enderror" value="{{old('account_no')}}" placeholder="Input Account Number">
                 </div>
                 <div class="col-span-12 sm:col-span-6">
                     <label>Full Name</label>

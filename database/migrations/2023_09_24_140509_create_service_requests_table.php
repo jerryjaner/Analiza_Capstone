@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('account_no');
             $table->string('status')->default('Pending');
             $table->integer('techinician_id')->nullable();
+            $table->longtext('concern')->nullable();
             $table->string('date_assigned')->nullable();
             $table->string('date_accomp')->nullable();
             $table->string('causes_of_request')->nullable();

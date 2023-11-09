@@ -177,6 +177,7 @@ class ServiceRequestController extends Controller
             'user_id' => auth()->user()->id,
             'account_no' => $request->input('account_no'),
             'service_id' => $request->input('service_id'),
+            'concern' => $request->concern,
         ]);
 
         return redirect()->back()->with('success', 'Service requested successfully');

@@ -7,7 +7,7 @@
                     @foreach ($services as $service)
                         <option value="{{ $service->id }}">{{ $service->name }}</option>
                     @endforeach
-                </select>  
+                </select>
             </div>
         </div>
         <div wire:loading>
@@ -15,13 +15,13 @@
         </div>
         @if ($selectedService)
             <div class="mb-6">
-                <div class="col-span-12 sm:col-span-4"> 
-                    <label>Request Description</label> 
-                    <textarea  class="input w-full border-gray-300 mt-2 flex-1" name="description" id="description" cols="30" rows="5">{{ $selectedService->description }}</textarea>
+                <div class="col-span-12 sm:col-span-4">
+                    <label>Request Description:</label>
+                    <textarea  class="input w-full border-gray-300 mt-2 flex-1" name="description" id="description" cols="30" rows="5" readonly>{{ $selectedService->description }}</textarea>
                 </div>
             </div>
         @endif
-        
+
     </div>
-  
+
 </div>

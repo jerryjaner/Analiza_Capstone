@@ -99,6 +99,8 @@ class SellController extends Controller
                             return $users->pluck('serviceRequests')->flatten()->count();
                         });
 
+
+
         return view('pages.admin.report.summary',[
             'usersByBarangay' => $usersByBarangay,
             'pagination' => $pagination

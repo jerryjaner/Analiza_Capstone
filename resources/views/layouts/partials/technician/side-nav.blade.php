@@ -1,3 +1,9 @@
+@php
+
+     $inprocess_request = \App\Models\ServiceRequest::where('status','Inprocess')->count();
+
+@endphp
+
 <nav class="side-nav">
     <a href="" class="intro-x flex items-center pl-5 pt-4">
         <img class="w-12" src="{{asset('img/logo.png')}}" style="border-radius:30px;">
@@ -15,6 +21,11 @@
             <a href="{{route('assigned.index')}}" class="side-menu">
                 <div class="side-menu__icon"> <i data-feather="clipboard"></i> </div>
                 <div class="side-menu__title"> Assigned Request </div>
+
+                @if($inprocess_request > 0)
+                    <span class="badge right" style="background-color:yellow; padding:3px 10px; border-radius:10%; margin-right:10px;    color:black;" title="Not Approved Customer">{{$inprocess_request}}</span>
+                @endif
+
             </a>
         </li>
         <li>

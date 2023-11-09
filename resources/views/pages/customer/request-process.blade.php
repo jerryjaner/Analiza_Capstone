@@ -138,15 +138,19 @@ Request History Log
                                     <textarea class="input w-full mt-2 flex-1 border" id="" cols="30" rows="5" readonly>{{$data->service->description ?? 'N/A'}}</textarea>
                                 </div>
                                 <div class="col-span-12">
+                                    <label>Concerns</label>
+                                    <textarea class="input w-full mt-2 flex-1 border" id="" cols="30" rows="5" readonly>{{$data->concern ?? 'N/A'}}</textarea>
+                                </div>
+                                <div class="col-span-12">
                                     <label>Technician</label>
                                     <input type="text" class="input w-full border mt-2 flex-1" value="{{$data->technician->name ?? 'Waiting for technician assigned'}}" readonly>
                                 </div>
                             </div>
                             <div class="px-5 py-3 text-right border-t border-gray-200 dark:border-dark-5">
                                 <button type="button" data-dismiss="modal" class="button w-20 border text-gray-700 dark:border-dark-5 dark:text-gray-300 mr-1">Close</button>
-                                @if($data->status == 'Inprocess')
-                                <button type="submit" class="button w-30 bg-theme-1 text-white">Completed</button>
-                                @endif
+                                {{-- @if($data->status == 'Inprocess')
+                                 <button type="submit" class="button w-30 bg-theme-1 text-white">Completed</button>
+                                @endif --}}
                             </div>
                     </div>
                 </div>

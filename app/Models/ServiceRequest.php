@@ -16,6 +16,7 @@ class ServiceRequest extends Model
         'account_no',
         'status',
         'techinician_id',
+        'concern',
         'causes_of_request',
         'findings',
         'action_taking',

@@ -95,16 +95,24 @@ Request Submission
         @csrf
         <div class="mb-4">
             <div class="col-span-12 sm:col-span-4">
-                <label>Account No.</label>
+                <label>Account Number:</label>
                 <input type="text" name="account_no" pattern="[0-9]{3}-{1}[0-9]{2}-[0-9]{5}" minlength="12" maxlength="12" class="input w-full border border-gray-300 mt-2 flex-1" value="{{auth()->user()->account_no}}">
             </div>
+
         </div>
         <div class="mb-4">
             <livewire:service-selection />
+
+            <div class="col-span-12 sm:col-span-4">
+                <label>Concerns:</label>
+                <textarea name="concern" cols="5" rows="5" class="input w-full border border-gray-300 mt-2 flex-1"></textarea>
+            </div>
+            <div class="flex items-center justify-between">
+                <button type="submit" class="button w-20 bg-theme-1 text-white">Submit</button>
+            </div>
         </div>
-        <div class="flex items-center justify-between">
-            <button type="submit" class="button w-20 bg-theme-1 text-white">Submit</button>
-        </div>
+
+
     </form>
 </div>
 @endsection

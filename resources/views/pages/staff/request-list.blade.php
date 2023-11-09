@@ -168,9 +168,14 @@ Work Order
                                     <label>Request Information</label>
                                     <input type="text" class="input w-full border mt-2 flex-1" value="{{$data->service->name ?? 'N/A'}}" readonly>
                                 </div>
+
                                 <div class="col-span-12">
                                     <label>Request Description</label>
                                     <textarea class="input w-full mt-2 flex-1 border" id="" cols="30" rows="5" readonly>{{$data->service->description ?? 'N/A'}}</textarea>
+                                </div>
+                                <div class="col-span-12">
+                                    <label>Concerns</label>
+                                    <textarea class="input w-full mt-2 flex-1 border" id="" cols="30" rows="5" readonly>{{$data->concern ?? 'N/A'}}</textarea>
                                 </div>
                                 <div class="col-span-12 sm:col-span-8"> <label>Assign Technician</label>
                                     <select  required="" name="technician" class="input w-full border mt-2 flex-1 @error('technician') border-theme-6 @enderror">

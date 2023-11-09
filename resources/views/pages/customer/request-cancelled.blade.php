@@ -134,6 +134,10 @@ Request History Log
                                     <textarea class="input w-full mt-2 flex-1 border" id="" cols="30" rows="5" readonly>{{$data->service->description ?? 'N/A'}}</textarea>
                                 </div>
                                 <div class="col-span-12">
+                                    <label>Concerns</label>
+                                    <textarea class="input w-full mt-2 flex-1 border" id="" cols="30" rows="5" readonly>{{$data->concern ?? 'N/A'}}</textarea>
+                                </div>
+                                <div class="col-span-12">
                                     <label>Technician</label>
                                     <input type="text" class="input w-full border mt-2 flex-1" value="{{$data->technician->name ?? 'N/A'}}" readonly>
                                 </div>
