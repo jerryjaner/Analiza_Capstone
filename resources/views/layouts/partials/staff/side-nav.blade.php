@@ -3,6 +3,7 @@
 
      $pending_request = \App\Models\ServiceRequest::where('status','Pending')->count();
      $inprocess_request = \App\Models\ServiceRequest::where('status','Inprocess')->count();
+      $unseen_message = \App\Models\ChMessage::where('from_id', '!=', '3')->where('seen','0')->count();
 @endphp
 
 <nav class="side-nav">
@@ -57,6 +58,10 @@
             <a href="/chatify" class="side-menu">
                 <div class="side-menu__icon"> <i data-feather="message-circle"></i> </div>
                 <div class="side-menu__title"> Messages </div>
+
+                @if($unseen_message > 0)
+                    <span class="badge right" style="background-color:yellow; padding:3px 10px; border-radius:10%; margin-right:10px;    color:black;" title="Unseen Message">{{$unseen_message}}</span>
+                @endif
             </a>
         </li>
         <li>

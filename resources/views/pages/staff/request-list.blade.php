@@ -204,7 +204,7 @@ Work Order
                 </div>
                 @empty
                 <tr>
-                    <td colspan="9" class="text-center text-red-500">No Data Found!</td>
+                    <td colspan="10" class="text-center text-red-500">No Data Found!</td>
                 </tr>
                @endforelse
             </tbody>

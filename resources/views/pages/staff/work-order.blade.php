@@ -71,6 +71,7 @@ Work Order
                     <th class="bg-theme-1 text-xs text-white">Technician</th>
                     <th class="bg-theme-1 text-xs text-white">Assigned Date</th>
                     <th class="bg-theme-1 text-xs text-white">Status</th>
+                    <th class="bg-theme-1 text-xs text-white">Priority Status</th>
                     <th class="bg-theme-1 text-xs text-white" style="border-top-right-radius: 20px;">Action</th>
                 </tr>
             </thead>
@@ -141,6 +142,35 @@ Work Order
                             {{$data->status ?? 'N/A'}}
                         </div>
                         @endif
+                    </td>
+                    <td class="w-40">
+                        @if ($data->priority == 'Low')
+
+                            <div class="flex" style="color: green">
+                                {{$data->priority ?? 'N/A'}}
+                            </div>
+
+                        @elseif ($data->priority == 'Medium')
+
+                            <div class="flex" style="color: orange">
+                                {{$data->priority ?? 'N/A'}}
+                            </div>
+
+                        @elseif ($data->priority == 'Completed')
+
+                            <div class="flex" style="color: red">
+                                {{$data->priority ?? 'N/A'}}
+                            </div>
+
+                        @else
+
+                            <div class="flex">
+                                {{$data->priority ?? 'N/A'}}
+                            </div>
+
+
+                        @endif
+
                     </td>
 
                     <td class="w-40">
@@ -341,7 +371,7 @@ Work Order
                 </div>
                 @empty
                 <tr>
-                    <td colspan="10" class="text-center text-red-500">No Data Found!</td>
+                    <td colspan="12" class="text-center text-red-500">No Data Found!</td>
                 </tr>
                @endforelse
             </tbody>

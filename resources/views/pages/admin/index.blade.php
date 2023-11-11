@@ -63,10 +63,41 @@ Dashboard
 
     </div>
 </div>
+<div class="col-span-12 mt-8">
+    <div class="grid grid-cols-12 gap-12  mt-5">
+        <div class="col-span-4 xl:col-span-4 intro-y">
+            <div class="report-box zoom-in">
+                <div class="box p-5">
+                    <h2 class="text-lg font-medium truncate mr-5">
+                        Request Status Chart
+                     </h2>
+                    <canvas  class="text-3xl font-bold leading-8 mt-6" id="PieChart"></canvas>
+                </div>
+            </div>
+        </div>
 
-<div class="col-span-12 lg:col-span-6">
-    <div class="intro-y overflow-auto xxxl:overflow-visible sm:mt-8">
-    <table class="table table-report sm:mt-2">
+        <div class="col-span-6 xl:col-span-8 intro-y">
+            <div class="report-box zoom-in">
+                <div class="box p-5">
+                    <h2 class="text-lg font-medium truncate mr-5">
+                        Monthly Request
+                     </h2>
+                     <canvas id="monthlyRequestsChart" width="1000"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+<div style="width: 80%;">
+    <canvas id="monthlyChart"></canvas>
+</div>
+    {{-- <div class="intro-y overflow-auto xxxl:overflow-visible sm:mt-8">
+        <table class="table table-report sm:mt-2">
             <thead>
                 <tr>
                     <th class="bg-theme-1 text-xs text-white" style="border-top-left-radius: 20px;">Date Created</th>
@@ -109,7 +140,7 @@ Dashboard
 
                     <td class="w-40">
                         <div class="flex">
-                            {{$data->user->address ?? 'N/A'}}
+                            {{$data->user->house_block_lot}} {{$data->user->street}} {{$data->user->subdivison}} {{$data->user->barangay}} {{$data->user->municipality}} {{$data->user->province}}
                         </div>
                     </td>
 
@@ -160,7 +191,7 @@ Dashboard
                                 </div>
                                 <div class="col-span-12 sm:col-span-6">
                                     <label>Customer Address</label>
-                                    <input type="text" class="input w-full border mt-2 flex-1" value="{{$data->user->address}}" readonly>
+                                    <input type="text" class="input w-full border mt-2 flex-1" value=" {{$data->user->house_block_lot}} {{$data->user->street}} {{$data->user->subdivison}} {{$data->user->barangay}} {{$data->user->municipality}} {{$data->user->province}}" readonly>
                                 </div>
                                 <div class="col-span-12 sm:col-span-6">
                                     <label>Customer Email</label>
@@ -203,7 +234,61 @@ Dashboard
                @endforelse
             </tbody>
         </table>
+    </div> --}}
+<div class="col-span-12 lg:col-span-6">
 
-    </div>
+
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    function generateRandomColor() {
+        // Generate a random hex color
+        return '#' + Math.floor(Math.random()*16777215).toString(16);
+    }
+
+    var ctx = document.getElementById('PieChart').getContext('2d');
+    var myPieChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Pending', 'In Process', 'Completed', 'Cancelled' ],
+            datasets: [{
+                data: [@json($data['pending']), @json($data['inprocess']), @json($data['completed']), @json($data['cancelled']) ],
+                backgroundColor: [
+                    generateRandomColor(),
+                    generateRandomColor(),
+                    generateRandomColor(),
+                    generateRandomColor(),
+                ],
+            }],
+        },
+    });
+</script>
+
+<script>
+    var ctx = document.getElementById('monthlyRequestsChart').getContext('2d');
+    var data = {
+        labels: {!! $monthlyRequests->pluck('month') !!},
+        datasets: [{
+            label: 'Total Requests',
+            data: {!! $monthlyRequests->pluck('total') !!},
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+        }]
+    };
+    var options = {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    };
+    var myBarChart = new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: options
+    });
+</script>
+
+
 @endsection

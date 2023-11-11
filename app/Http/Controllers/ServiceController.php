@@ -83,6 +83,8 @@ class ServiceController extends Controller
             ]);
         } else {
             $pagination = true;
+
+
             return view('pages.admin.service.show', [
                 'request_log' => ServiceRequest::with(['service', 'technician'])->where('service_id',$id)->paginate(5),
                 'service_name' => Service::findOrFail($id),

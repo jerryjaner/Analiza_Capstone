@@ -19,7 +19,8 @@ class WorkOrderController extends Controller
                         ->orWhere('causes_of_request', 'LIKE', "%$searchQuery%")
                         ->orWhere('findings', 'LIKE', "%$searchQuery%")
                         ->orWhere('action_taking', 'LIKE', "%$searchQuery%")
-                        ->orWhere('date_accomp', 'LIKE', "%$searchQuery%");
+                        ->orWhere('date_accomp', 'LIKE', "%$searchQuery%")
+                        ->orWhere('priority', 'LIKE', "%$searchQuery%");
                 })->get();
             $pagination = false;
         } else {

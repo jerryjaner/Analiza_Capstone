@@ -183,7 +183,7 @@ Customers
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="7" class="text-center text-red-500">No Data Found!</td>
+                    <td colspan="9" class="text-center text-red-500">No Data Found!</td>
                 </tr>
 
                 @endforelse

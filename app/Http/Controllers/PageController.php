@@ -25,19 +25,37 @@ class PageController extends Controller
             $pagination = true;
             $work_order = ServiceRequest::with(['service', 'technician'])
                 ->paginate(5);
+
+
         }
 
         $role = auth()->user()->role;
         $searchQuery = today()->format('Y-m-d');
         if($role=='1'){
 
+            $data = [
+                'pending' => ServiceRequest::with(['service', 'technician'])->where('status', 'Pending')->count(),
+                'completed' => ServiceRequest::with(['service', 'technician'])->where('status', 'Completed')->count(),
+                'cancelled' =>ServiceRequest::with(['service', 'technician'])->where('status', 'Cancelled')->count(),
+                'inprocess' => ServiceRequest::with(['service', 'technician'])->where('status', 'Inprocess')->count(),
+            ];
+
+
+            $monthlyRequests = ServiceRequest::selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, COUNT(*) as total')
+                                        ->groupBy('month')
+                                        ->orderBy('month')
+                                        ->get();
+
+
                 return view('pages.admin.index',[
                     'count_customer' => User::where('role', '0')->count(),
                     'count_staff' => User::where('role', '3')->count(),
                     'count_technician' => User::where('role', '2')->count(),
                     'work_order' => $work_order,
+                    'data' => $data,
                     'user_technician' => User::where('role', '2')->get(),
                     'count_request' => ServiceRequest::where('created_at', 'like', "%$searchQuery%")->count(),
+                    'monthlyRequests' => $monthlyRequests,
                 ]);
 
 

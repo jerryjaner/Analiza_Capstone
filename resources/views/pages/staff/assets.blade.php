@@ -194,7 +194,7 @@ Assets List
                     <!-- Modal end -->
                 @empty
                     <tr>
-                        <td colspan="4" class="text-center text-red-500">No Data Found!</td>
+                        <td colspan="5" class="text-center text-red-500">No Data Found!</td>
                     </tr>
                 @endforelse
 

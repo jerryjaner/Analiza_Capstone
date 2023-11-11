@@ -12,13 +12,13 @@ Service
 <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">
         <h2 class="intro-y text-lg font-medium mr-5 text-center">{{$service_name->name ?? 'N/A'}}</h2>
-        
+
         <div class="hidden md:block mx-auto text-gray-600"></div>
         <form method="GET">
         <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
             <div class="w-full xl:w-56 relative text-gray-700 dark:text-gray-300">
                 <input type="text" name="search" value="{{ request()->get('search') }}" class="input w-full xl:w-56 box pr-10 placeholder-theme-13" style="padding:10px; border-radius: 20px;" placeholder="Search...">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> 
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             </div>
         </div>
         </form>
@@ -70,7 +70,7 @@ Service
 
                     <td class="w-40">
                         <div class="flex">
-                            {{$data->user->address ?? 'N/A'}}
+                            {{$data->user->house_block_lot}} {{$data->user->street}} {{$data->user->subdivison}} {{$data->user->barangay}} {{$data->user->municipality}} {{$data->user->province}}
                         </div>
                     </td>
 
@@ -106,8 +106,8 @@ Service
 
                     <td class="w-40">
                         <div class="flex">
-                            <a href="javascript:;" 
-                                data-toggle="modal" 
+                            <a href="javascript:;"
+                                data-toggle="modal"
                                 data-target="#view{{$data->id}}"
                                 class="view-dialog rounded-md p-1 w-35 text-white bg-theme-1 hover:bg-blue-400 xl:mr-3 flex">
                                 <i data-feather="eye"></i>
@@ -137,45 +137,49 @@ Service
                             @method('PUT')
                             <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200 dark:border-dark-5">
                                 <h2 class="font-medium text-base mr-auto">Assigned Work Details</h2>
-                                <p>Request No. <u>{{$data->req_no ?? 'N/A'}}</u></p> 
+                                <p>Request No. <u>{{$data->req_no ?? 'N/A'}}</u></p>
                             </div>
                             <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
                                 <input type="hidden" name="id" value="{{$data->id}}">
-                                <div class="col-span-12 sm:col-span-6"> 
+                                <div class="col-span-12 sm:col-span-6">
                                     <label>Customer Name</label>
                                     <input type="text" class="input w-full border mt-2 flex-1" value="{{$data->user->name}}" readonly>
                                 </div>
-                                <div class="col-span-12 sm:col-span-6"> 
+                                <div class="col-span-12 sm:col-span-6">
                                     <label>Customer Address</label>
-                                    <input type="text" class="input w-full border mt-2 flex-1" value="{{$data->user->address}}" readonly>
+                                    <input type="text" class="input w-full border mt-2 flex-1" value="{{$data->user->house_block_lot}} {{$data->user->street}} {{$data->user->subdivison}} {{$data->user->barangay}} {{$data->user->municipality}} {{$data->user->province}}" readonly>
                                 </div>
-                                <div class="col-span-12 sm:col-span-6"> 
+                                <div class="col-span-12 sm:col-span-6">
                                     <label>Customer Email</label>
                                     <input type="text" class="input w-full border mt-2 flex-1" value="{{$data->user->email}}" readonly>
                                 </div>
-                                <div class="col-span-12 sm:col-span-6"> 
+                                <div class="col-span-12 sm:col-span-6">
                                     <label>Customer CP#</label>
                                     <input type="text" class="input w-full border mt-2 flex-1" value="{{$data->user->cp}}" readonly>
                                 </div>
                                 <hr class="col-span-12 mt-2">
-                                <div class="col-span-12"> 
+                                <div class="col-span-12">
                                     <label>Request Information</label>
                                     <input type="text" class="input w-full border mt-2 flex-1" value="{{$data->service->name ?? 'N/A'}}" readonly>
                                 </div>
-                                <div class="col-span-12"> 
+                                <div class="col-span-12">
                                     <label>Request Description</label>
                                     <textarea class="input w-full mt-2 flex-1 border" id="" cols="30" rows="5" readonly>{{$data->service->description ?? 'N/A'}}</textarea>
                                 </div>
-                                <div class="col-span-12"> 
+                                <div class="col-span-12">
+                                    <label>Concerns</label>
+                                    <textarea class="input w-full mt-2 flex-1 border" id="" cols="30" rows="5" readonly>{{$data->concern ?? 'N/A'}}</textarea>
+                                </div>
+                                <div class="col-span-12">
                                     <label>Assign Technician</label>
                                     <input type="text" class="input w-full border mt-2 flex-1" value="{{$data->technician->name ?? 'N/A'}}" readonly>
                                 </div>
-                                <div class="col-span-12 sm:col-span-8"> 
+                                <div class="col-span-12 sm:col-span-8">
                                     <label>Priority Status</label>
                                     <input type="text" class="input w-full border mt-2 flex-1" value="{{$data->priority ?? 'N/A'}}" readonly>
                                 </div>
-                                <div class="col-span-12 sm:col-span-4 text-right"> 
-                                    
+                                <div class="col-span-12 sm:col-span-4 text-right">
+
                                     @if($data->status == 'Completed' || $data->status == 'Inprocess')
                                     <label>Status</label>
                                     <p class="text-blue-500">{{$data->status ?? 'N/A'}}</p>
@@ -200,40 +204,44 @@ Service
                             @method('PUT')
                             <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200 dark:border-dark-5">
                                 <h2 class="font-medium text-base mr-auto">Update Priority Status</h2>
-                                <p>Request No. <u>{{$data->req_no ?? 'N/A'}}</u></p> 
+                                <p>Request No. <u>{{$data->req_no ?? 'N/A'}}</u></p>
                             </div>
                             <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
                                 <input type="hidden" name="id" value="{{$data->id}}">
-                                <div class="col-span-12 sm:col-span-6"> 
+                                <div class="col-span-12 sm:col-span-6">
                                     <label>Customer Name</label>
                                     <input type="text" class="input w-full border mt-2 flex-1" value="{{$data->user->name}}" readonly>
                                 </div>
-                                <div class="col-span-12 sm:col-span-6"> 
+                                <div class="col-span-12 sm:col-span-6">
                                     <label>Customer Address</label>
-                                    <input type="text" class="input w-full border mt-2 flex-1" value="{{$data->user->address}}" readonly>
+                                    <input type="text" class="input w-full border mt-2 flex-1" value="{{$data->user->house_block_lot}} {{$data->user->street}} {{$data->user->subdivison}} {{$data->user->barangay}} {{$data->user->municipality}} {{$data->user->province}}" readonly>
                                 </div>
-                                <div class="col-span-12 sm:col-span-6"> 
+                                <div class="col-span-12 sm:col-span-6">
                                     <label>Customer Email</label>
                                     <input type="text" class="input w-full border mt-2 flex-1" value="{{$data->user->email}}" readonly>
                                 </div>
-                                <div class="col-span-12 sm:col-span-6"> 
+                                <div class="col-span-12 sm:col-span-6">
                                     <label>Customer CP#</label>
                                     <input type="text" class="input w-full border mt-2 flex-1" value="{{$data->user->cp}}" readonly>
                                 </div>
                                 <hr class="col-span-12 mt-2">
-                                <div class="col-span-12"> 
+                                <div class="col-span-12">
                                     <label>Request Information</label>
                                     <input type="text" class="input w-full border mt-2 flex-1" value="{{$data->service->name ?? 'N/A'}}" readonly>
                                 </div>
-                                <div class="col-span-12"> 
+                                <div class="col-span-12">
                                     <label>Request Description</label>
                                     <textarea class="input w-full mt-2 flex-1 border" id="" cols="30" rows="5" readonly>{{$data->service->description ?? 'N/A'}}</textarea>
                                 </div>
-                                <div class="col-span-12"> 
+                                <div class="col-span-12">
+                                    <label>Concerns</label>
+                                    <textarea class="input w-full mt-2 flex-1 border" id="" cols="30" rows="5" readonly>{{$data->concern ?? 'N/A'}}</textarea>
+                                </div>
+                                <div class="col-span-12">
                                     <label>Assign Technician</label>
                                     <input type="text" class="input w-full border mt-2 flex-1" value="{{$data->technician->name ?? 'N/A'}}" readonly>
                                 </div>
-                                <div class="col-span-12 sm:col-span-8"> 
+                                <div class="col-span-12 sm:col-span-8">
                                     <label>Priority Status</label>
                                     <select  required="" name="priority" class="input w-full border mt-2 flex-1 @error('priority') border-theme-6 @enderror">
                                         <option value="High">High</option>
@@ -241,7 +249,7 @@ Service
                                         <option value="Low">Low</option>
                                     </select>
                                 </div>
-                                <div class="col-span-12 sm:col-span-4 text-right"> 
+                                <div class="col-span-12 sm:col-span-4 text-right">
                                     <label>Status</label>
                                     <p class="text-blue-500">{{$data->status ?? 'N/A'}}</p>
                                     <label>Date Assigned</label>

@@ -28,8 +28,9 @@ class AssignedRequestController extends Controller
             $work_order = ServiceRequest::with(['service', 'technician'])
                 ->where('techinician_id', auth()->user()->id)
                 ->where('status', 'Inprocess')
-                ->orWhere('status', 'Completed')
+
                 ->paginate(5);
+              //  ->orWhere('status', 'Completed')
         }
         return view('pages.technician.assigned-request', [
             'pagination' => $pagination,
